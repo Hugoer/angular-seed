@@ -1,0 +1,11 @@
+{
+    "main": {
+        "index": "APP",
+        "list": "lista test",
+        "goodbye": "Good bye",
+        "signOut": "Signout",
+        "signOutQuestion": "The session will be closed. Are you sure?",
+        "user": "User",
+        "administration": "Administration"
+    }
+}

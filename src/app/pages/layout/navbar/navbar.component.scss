@@ -1,0 +1,69 @@
+// @import '../../../css/helpers';
+@import '../../../../css/public/helpers';
+.navbar__title {
+	@extend %nowrap;
+
+	display: flex;
+	flex: 1;
+	&.navbar__title--unsaved {
+		font-weight: bold;
+		font-style: italic;
+		&:after {
+			font-weight: bold;
+
+			display: inline;
+
+			margin-left: 5px;
+
+			content: ' *';
+
+			color: red;
+		}
+	}
+}
+
+:host {
+	display: block;
+	.nv__projection {
+		width: 100px;
+	}
+}
+::ng-deep {
+	@media screen and (max-width:800px) {
+		.mat-form-field {
+			&.nv__baselayer,
+			&.nv__projection,
+			&.nv__search-city {
+				display: none;
+			}
+		}
+	}
+
+	.nv__baselayer {
+		width: 250px;
+	}
+
+	.nv__search-city {
+		width: 30px;
+
+		transition: width .3s ease;
+		.mat-form-field-flex {
+			align-items: flex-end;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+
+		&.mat-form-field.mat-form-field-type-mat-input.mat-form-field-should-float {
+			&.mat-focused {
+				width: 350px;
+				mat-icon {
+					display: none;
+				}
+				label.mat-form-field-label {
+					opacity: 0;
+				}
+			}
+		}
+	}
+}

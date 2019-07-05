@@ -1,0 +1,111 @@
+{
+    "global": {
+        "yes": "Yes",
+        "no": "No",
+        "ok": "Accept",
+        "cancel": "Cancel",
+        "http": {
+            "201": "Resource created",
+            "204": "No results found.",
+            "400": "There was a problem with the filters applied. If it persists, contact your administrator.",
+            "403": "You do not have sufficient permissions to access this resource.",
+            "401": "You are not authenticated",
+            "404": "There is no resource. Please, contact your administrator.",
+            "409": "This resource is referenced to ohter resource. It can not be deleted",
+            "500": "An internal error has occurred.",
+            "defaulterror": "Unexpected error has ocurred.",
+            "json": "An error occurred with the data type returned by the server. Contact your administrator."
+        },
+        "title": "Main APP",
+        "browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
+        "menu": {
+            "home": "Home",
+            "entities": {},
+            "account": {
+                "main": "Account",
+                "settings": "Settings",
+                "password": "Password",
+                "sessions": "Sessions",
+                "login": "Sign in",
+                "logout": "Sign out",
+                "register": "Register"
+            },
+            "admin": {
+                "main": "Administration",
+                "userManagement": "User management",
+                "tracker": "User tracker",
+                "configuration": "Configuration"
+            },
+            "language": "Language"
+        },
+        "form": {
+            "username": "Username",
+            "username.placeholder": "Your username",
+            "currentpassword": "Current password",
+            "currentpassword.placeholder": "Current password",
+            "newpassword": "New password",
+            "newpassword.placeholder": "New password",
+            "confirmpassword": "New password confirmation",
+            "confirmpassword.placeholder": "Confirm the new password",
+            "email": "Email",
+            "email.placeholder": "Your email"
+        },
+        "messages": {
+            "info": {
+                "authenticated": {
+                    "prefix": "If you want to ",
+                    "link": "sign in",
+                    "suffix": ", you can try the default accounts:<br/>- Administrator (login=\"admin\" and password=\"admin\") <br/>- User (login=\"user\" and password=\"user\")."
+                },
+                "register": {
+                    "noaccount": "You don't have an account yet?",
+                    "link": "Register a new account"
+                }
+            },
+            "error": {
+                "dontmatch": "The password and its confirmation do not match!"
+            },
+            "validate": {
+                "newpassword": {
+                    "required": "Your password is required.",
+                    "minlength": "Your password is required to be at least 4 characters.",
+                    "maxlength": "Your password cannot be longer than 50 characters.",
+                    "strength": "Password strength:"
+                },
+                "confirmpassword": {
+                    "required": "Your confirmation password is required.",
+                    "minlength": "Your confirmation password is required to be at least 4 characters.",
+                    "maxlength": "Your confirmation password cannot be longer than 50 characters."
+                },
+                "email": {
+                    "required": "Your email is required.",
+                    "invalid": "Your email is invalid.",
+                    "minlength": "Your email is required to be at least 5 characters.",
+                    "maxlength": "Your email cannot be longer than 50 characters."
+                }
+            }
+        },
+        "field": {
+            "id": "ID"
+        },
+        "ribbon": {
+            "dev": "Development"
+        },
+        "item-count": "Showing {{first}} - {{second}} of {{total}} items."
+    },
+    "error": {
+        "internalServerError": "Internal server error",
+        "server.not.reachable": "Server not reachable",
+        "url.not.found": "Not found",
+        "NotNull": "Field {{ fieldName }} cannot be empty!",
+        "Size": "Field {{ fieldName }} does not meet min/max size requirements!",
+        "userexists": "Login name already used!",
+        "emailexists": "Email is already in use!",
+        "idexists": "A new {{ entityName }} cannot already have an ID",
+        "idnull": "Invalid ID",
+        "mapnotfound": "Map {{id}} not found"
+    },
+    "footer": "This is your footer",
+    "result": "{{count}} result",
+    "results": "{{count}} results"
+}

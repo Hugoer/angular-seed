@@ -1,0 +1,56 @@
+@import '../../../../css/public/variables';
+
+.wg__side-menu {
+	display: flex;
+	flex-direction: column;
+
+	min-width: 200px;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+
+	background-color: $sv-secondary;
+
+	// .item__bottom {
+	// 	display: flex;
+	// 	flex: 1;
+
+	// align-items: flex-end;
+	.wg__item {
+		cursor: pointer;
+	}
+	// }
+	a {
+		text-decoration: none;
+		&:focus {
+			outline-color: white;
+		}
+	}
+	h3.mat-subheader,
+	.wg__item {
+		color: white;
+		background-color: $sv-secondary;
+		.mat-list-item {
+			color: white;
+		}
+	}
+	.user__icon {
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+	.wg__item--active {
+		text-transform: uppercase;
+
+		background-color: $sv-primary;
+	}
+	.wg__side-divider {
+		background-color: white;
+	}
+}
+
+.wg__side-login {
+	display: block;
+
+	margin: 0 auto;
+}
+

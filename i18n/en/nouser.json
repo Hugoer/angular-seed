@@ -1,0 +1,6 @@
+{
+    "nouser": {
+        "title": "User does not exists",
+        "desc": "User does not exists in the 'WebGIS' application. Please, contact your administrator."
+    }
+}

@@ -1,0 +1,6 @@
+{
+    "nouser": {
+        "title": "El usuario no existe",
+        "desc": "El usuario existe, pero no tiene acceso a esta aplicación. Por favor, consulte con su administrador."
+    }
+}

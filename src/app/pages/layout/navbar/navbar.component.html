@@ -1,0 +1,22 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="openMenu()" class="menu__button">
+        <mat-icon mat-list-icon>menu</mat-icon>
+    </button>
+    <span class="navbar__title">{{title}}</span>
+
+    <!-- <ng-container *ngIf="showMenu">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <ng-container *ngFor="let action of actions; trackBy: trackById">
+                <button *ngIf="action.visible" [disabled]="!action.enabled" mat-menu-item
+                    (click)="dispatchMenuAction(action.action)">
+                    <mat-icon>{{action.icon}}</mat-icon>
+                    <span>{{'map.' + action.name | translate}}</span>
+                </button>
+            </ng-container>
+        </mat-menu>
+    </ng-container> -->
+
+</mat-toolbar>

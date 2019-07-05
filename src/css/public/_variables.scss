@@ -1,0 +1,7 @@
+@import '../theming';
+$sv-primary: mat-color(map-get($sv-app-theme, primary));
+$sv-primary-contrast: mat-contrast(map-get($sv-app-theme, primary),500);
+$sv-secondary: mat-color(map-get($sv-app-theme, accent));
+$sv-secondary-contrast: mat-contrast(map-get($sv-app-theme, accent),500);
+$sv-warn: mat-color(map-get($sv-app-theme, warn));
+$sv-warn-contrast: mat-contrast(map-get($sv-app-theme, warn),500);

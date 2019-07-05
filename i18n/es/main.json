@@ -1,0 +1,11 @@
+{
+    "main": {
+        "index": "APP",
+        "list": "Lista",
+        "goodbye": "Good bye",
+        "signOut": "Signout",
+        "signOutQuestion": "Se cerrará la sesión, ¿está seguro?",
+        "user": "Usuario",
+        "administration": "Administración"
+    }
+}

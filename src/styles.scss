@@ -1,0 +1,16 @@
+@import 'css/theming';
+@import 'css/materialshame';
+@import 'css/generic';
+@import 'css/table';
+@import 'css/public/helpers';
+@import 'css/public/variables';
+
+html,
+body {
+	height: 100%;
+}
+body {
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+
+	margin: 0;
+}

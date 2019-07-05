@@ -1,0 +1,42 @@
+.wg__margin {
+	display: flex;
+
+	min-height: calc(100vh - 64px);
+}
+
+mat-form-field {
+	margin: 5px;
+}
+
+.page {
+	display: block;
+
+	margin: 15px;
+}
+
+.wg__margin router-outlet + *:not(app-main) {
+	display: block;
+
+	padding: 15px;
+}
+
+
+mat-card-actions.mat-card-actions {
+	display: flex;
+
+	justify-content: flex-end;
+	button:first-child {
+		margin-right: 10px;
+	}
+}
+
+.mat-dialog-actions {
+	justify-content: flex-end;
+	button:first-child {
+		margin-right: 10px;
+	}
+}
+
+.cdk-drag-handle {
+	cursor: grab;
+}

@@ -1,0 +1,17 @@
+.wg__progress {
+	position: absolute;
+	z-index: 99;
+	top: 0;
+
+	display: none;
+	&.wg__progress--active {
+		display: block;
+	}
+}
+::ng-deep {
+	.sidenav {
+		mat-sidenav-content.mat-drawer-content {
+			overflow: hidden;
+		}
+	}
+}

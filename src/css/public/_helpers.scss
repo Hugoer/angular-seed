@@ -1,0 +1,52 @@
+$date-column: 100px;
+$checkbox-column: 50px;
+$code-desc-column: 100px;
+$xs-desc-column: 50px;
+$short-desc-column: 150px;
+$medium-desc-column: 250px;
+$long-desc-column: 300px;
+$extra-desc-column: 400px;
+$number-column: 100px;
+
+%date-column {
+	min-width: $date-column;
+}
+
+%xs-desc-column {
+	min-width: $xs-desc-column;
+}
+
+%code-desc-column {
+	min-width: $code-desc-column;
+}
+
+%extra-desc-column {
+	min-width: $extra-desc-column;
+}
+
+%long-desc-column {
+	min-width: $long-desc-column;
+}
+
+%medium-desc-column {
+	min-width: $medium-desc-column;
+}
+
+%short-desc-column {
+	min-width: $short-desc-column;
+}
+
+%checkbox-column {
+	min-width: $checkbox-column;
+}
+
+%number-column {
+	min-width: $number-column;
+}
+
+%nowrap {
+	overflow: hidden;
+
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

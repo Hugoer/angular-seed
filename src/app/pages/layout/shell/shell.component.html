@@ -1,0 +1,20 @@
+<app-spinner></app-spinner>
+
+<mat-progress-bar class="wg__progress" [ngClass]="{'wg__progress--active': showProgressBar}" [color]="'primary'"
+    [mode]="'indeterminate'">
+</mat-progress-bar>
+
+<mat-sidenav-container class="sidenav">
+
+    <mat-sidenav #fnMenu mode="over" [fixedInViewport]="true" [fixedTopGap]="0" [fixedBottomGap]="0">
+        <app-menu></app-menu>
+    </mat-sidenav>
+
+    <div class="wg__main">
+        <app-navbar></app-navbar>
+        <div class="wg__margin">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</mat-sidenav-container>
