@@ -4,6 +4,7 @@ const merge = require('gulp-merge-json');
 const i18nFolder = './i18n/';
 const languages = [
     'es',
+    'en',
 ];
 
 gulp.task('i18n', () => {

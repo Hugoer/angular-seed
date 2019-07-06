@@ -14,13 +14,6 @@ import { ConfirmDialogComponent } from '@app/shared/components/confirm/confirm.c
 })
 export class MenuComponent implements OnInit {
 
-    main = {
-        index: '',
-        list: '',
-        signOut: '',
-        signOutQuestion: '',
-    };
-
     user: Promise<IUser>;
     userAdmin = false;
     isUser = false;
@@ -32,17 +25,6 @@ export class MenuComponent implements OnInit {
         public dialog: MatDialog,
     ) {
         this.envDev = !environment.production;
-        this.translateService.get([
-            'main.index',
-            'main.list',
-            'main.signOut',
-            'main.signOutQuestion',
-        ]).toPromise().then((translation) => {
-            this.main.index = translation['main.index'];
-            this.main.list = translation['main.list'];
-            this.main.signOut = translation['main.signOut'];
-            this.main.signOutQuestion = translation['main.signOutQuestion'];
-        });
     }
 
     ngOnInit() {
@@ -57,8 +39,8 @@ export class MenuComponent implements OnInit {
     signOut(): void {
         const dialogRef = this.dialog.open(ConfirmDialogComponent, {
             data: {
-                title: this.main.signOut,
-                question: this.main.signOutQuestion,
+                title: this.translateService.instant('main.signOut'),
+                question: this.translateService.instant('main.signOutQuestion'),
                 positive: 'main.signOut'
             }
         });

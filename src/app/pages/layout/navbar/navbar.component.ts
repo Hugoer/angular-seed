@@ -8,7 +8,8 @@ import {
 import { Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { SvsEventManager } from '@app/core/handlers/eventmanager.service';
 
-import { SvTitleService } from '@app/core/language/language.helper';
+import { SvLangService } from '@app/core/language/language.helper';
+import { ITitleNavbar } from '@app/core/language/lang.model';
 // import { EnumMapActions } from '@app/pages/main/main/main.model';
 
 export interface IAction {
@@ -33,17 +34,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     isLoading = false;
 
-    title: string;
+    title: ITitleNavbar;
 
     constructor(
         private cd: ChangeDetectorRef,
         private eventManager: SvsEventManager,
         private router: Router,
-        private titleService: SvTitleService,
+        private titleService: SvLangService,
     ) {
 
         this.eventManager.subscribe('titleChanged', (param) => {
-            this.title = param.content;
+            this.title = param.content as ITitleNavbar;
+            this.cd.markForCheck();
         });
 
         this.titleService.updateOnRouting();

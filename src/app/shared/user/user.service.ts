@@ -4,11 +4,16 @@ import { Store } from '@ngrx/store';
 import { environment } from '@environment/environment';
 
 import { IUser } from './user.model';
-import { AppLanguageService } from '../../core/language/language.service';
+// import { AppLanguageService } from '../../core/language/language.service';
+import { SvLangService } from '@app/core/language/language.helper';
 import { Router } from '@angular/router';
 
 import { LoadUser } from '@app/redux/user/user.actions';
 import { RootState } from '@app/redux/global.reducer';
+import { LocalStorage } from '@ngx-pwa/local-storage';
+import { take } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+
 
 @Injectable({
     providedIn: 'root'
@@ -19,8 +24,9 @@ export class UserService {
 
     constructor(
         private http: HttpClient,
-        private languageService: AppLanguageService,
-        // private localStorage: LocalStorageService,
+        private languageService: SvLangService,
+        private translateService: TranslateService,
+        private localStorage: LocalStorage,
         private router: Router,
         private store: Store<RootState>,
     ) {
@@ -31,8 +37,11 @@ export class UserService {
             this.http.post(environment.apiUrl + 'logout', {})
                 .toPromise()
                 .then(() => {
-                    // this.localStorage.clear('userLanguage');
-                    sessionStorage.clear();
+                    this.localStorage.removeItem('userLanguage')
+                        .pipe(take(1))
+                        .subscribe(() => {
+                            sessionStorage.clear();
+                        });
                     resolve();
                 })
                 .catch((err) => {
@@ -54,14 +63,16 @@ export class UserService {
                             langKey: !!response.langKey ? apiLang : environment.defaultI18nLang
                         };
                         // Si al cargar el usuario no tiene langKey, y en localStorage tampoco, se pone la de por defecto
-                        const actualLang = this.languageService.getCurrent();
+                        const actualLang = this.translateService.currentLang;
                         if (!actualLang) {
-                            if (!!this.user.langKey) {
-                                this.languageService.changeLanguage(this.user.langKey);
-                            }
+                            // if (!!this.user.langKey) {
+                            // this.languageService.changeLanguage(this.user.langKey);
+                            this.translateService.use(this.user.langKey);
+                            // }
                         } else {
                             if (actualLang !== this.user.langKey) {
-                                this.languageService.changeLanguage(this.user.langKey);
+                                // this.languageService.changeLanguage(this.user.langKey);
+                                this.translateService.use(this.user.langKey);
                             }
                         }
 
@@ -75,8 +86,9 @@ export class UserService {
                     })
                     .catch((err) => {
                         if (err.status === 403) {
-                            if (!this.languageService.getCurrent()) {
-                                this.languageService.changeLanguage(environment.defaultI18nLang);
+                            if (!this.translateService.currentLang) {
+                                // this.languageService.changeLanguage(environment.defaultI18nLang);
+                                this.translateService.use(environment.defaultI18nLang);
                             }
                             this.router.navigate(['no-user']);
                         }

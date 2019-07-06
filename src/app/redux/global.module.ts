@@ -1,19 +1,25 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { compReducers } from './global.reducer';
 import { StoreModule } from '@ngrx/store';
 
 @NgModule({
     imports: [
-        CommonModule,
+        // CommonModule,
         StoreModule.forRoot({}),
         StoreModule.forFeature('main', compReducers)
     ],
     exports: [
-        CommonModule,
+        // CommonModule,
         StoreModule
     ]
 })
 
-export class GlobalReduceModule { }
+export class GlobalReduceModule {
+    constructor(@Optional() @SkipSelf() parentModule: GlobalReduceModule) {
+        if (parentModule) {
+            throw new Error('GlobalReduceModule has already been loaded. You should only import Core modules in the CoreModule only.');
+        }
+    }
+}

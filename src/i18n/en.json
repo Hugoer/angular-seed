@@ -1,42 +1,42 @@
 {
 	"global": {
-		"yes": "Sí",
+		"yes": "Yes",
 		"no": "No",
-		"ok": "Aceptar",
-		"cancel": "Cancelar",
+		"ok": "Accept",
+		"cancel": "Cancel",
 		"http": {
-			"201": "Recurso creado",
-			"204": "No se han encontrado resultados.",
-			"400": "Se ha producido un problema con los filtros aplicados. Si persiste contacte con su administrador.",
-			"401": "No está autenticado.",
-			"403": "No tiene permisos suficientes para acceder a este recurso.",
-			"404": "No existe el recurso. Por favor, contacte con su administrador.",
-			"409": "Este recurso está referenciado a otro recurso. No podrá ser eliminado",
-			"500": "Se ha producido un error interno.",
-			"defaulterror": "Se ha producido un error inesperado.",
-			"json": "Se ha producido un error con el tipo de dato devuelto por el servidor. Contacte con su administrador."
+			"201": "Resource created",
+			"204": "No results found.",
+			"400": "There was a problem with the filters applied. If it persists, contact your administrator.",
+			"401": "You are not authenticated",
+			"403": "You do not have sufficient permissions to access this resource.",
+			"404": "There is no resource. Please, contact your administrator.",
+			"409": "This resource is referenced to ohter resource. It can not be deleted",
+			"500": "An internal error has occurred.",
+			"defaulterror": "Unexpected error has ocurred.",
+			"json": "An error occurred with the data type returned by the server. Contact your administrator."
 		},
-		"title": "Mi APP",
-		"browsehappy": "Está usando un navegador <strong>no actualizado</strong>. Por favor, <a href=\"http://browsehappy.com/?locale=en\">actualice su navegador</a> para mejorar su experiencia.",
+		"title": "Main APP",
+		"browsehappy": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/?locale=en\">upgrade your browser</a> to improve your experience.",
 		"menu": {
-			"home": "Inicio",
+			"home": "Home",
 			"entities": {},
 			"account": {
-				"main": "Cuenta",
-				"settings": "Ajustes",
-				"password": "Contraseña",
-				"sessions": "Sesiones",
-				"login": "Iniciar sesión",
-				"logout": "Cerrar la sesión",
-				"register": "Crear una cuenta"
+				"main": "Account",
+				"settings": "Settings",
+				"password": "Password",
+				"sessions": "Sessions",
+				"login": "Sign in",
+				"logout": "Sign out",
+				"register": "Register"
 			},
 			"admin": {
-				"main": "Administración",
-				"userManagement": "Gestión de usuarios",
-				"tracker": "Registro de los usuarios",
-				"configuration": "Configuración"
+				"main": "Administration",
+				"userManagement": "User management",
+				"tracker": "User tracker",
+				"configuration": "Configuration"
 			},
-			"language": "Idioma"
+			"language": "Language"
 		},
 		"form": {
 			"username": "Username",
@@ -109,19 +109,19 @@
 	"result": "{{count}} result",
 	"results": "{{count}} results",
 	"home": {
-		"title": "Título WorkLog"
+		"title": "WorkLog title"
 	},
 	"main": {
 		"index": "APP",
-		"list": "Lista",
+		"list": "lista test",
 		"goodbye": "Good bye",
-		"signOut": "Cerrar sesión",
-		"signOutQuestion": "Se cerrará la sesión, ¿está seguro?",
-		"user": "Usuario",
-		"administration": "Administración"
+		"signOut": "Signout",
+		"signOutQuestion": "The session will be closed. Are you sure?",
+		"user": "User",
+		"administration": "Administration"
 	},
 	"nouser": {
-		"title": "El usuario no existe",
-		"desc": "El usuario existe, pero no tiene acceso a esta aplicación. Por favor, consulte con su administrador."
+		"title": "User does not exists",
+		"desc": "User does not exists in the 'WebGIS' application. Please, contact your administrator."
 	}
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'workLog';
+  constructor(
+    private swUpdate: SwUpdate,
+  ) {
+    if (this.swUpdate.isEnabled) {
+      swUpdate.checkForUpdate();
+      this.swUpdate.available.subscribe(() => {
+        if (confirm(`Do you want to update ${this.title}?`)) {
+          window.location.reload();
+        }
+      });
+    }
+  }
 }

@@ -2,7 +2,7 @@
     <button mat-icon-button (click)="openMenu()" class="menu__button">
         <mat-icon mat-list-icon>menu</mat-icon>
     </button>
-    <span class="navbar__title">{{title}}</span>
+    <span class="navbar__title" *ngIf="!!title">{{title.key | translate}}</span>
 
     <!-- <ng-container *ngIf="showMenu">
         <button mat-icon-button [matMenuTriggerFor]="menu">

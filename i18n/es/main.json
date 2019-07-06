@@ -3,7 +3,7 @@
         "index": "APP",
         "list": "Lista",
         "goodbye": "Good bye",
-        "signOut": "Signout",
+        "signOut": "Cerrar sesión",
         "signOutQuestion": "Se cerrará la sesión, ¿está seguro?",
         "user": "Usuario",
         "administration": "Administración"

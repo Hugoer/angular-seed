@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { MomentModule } from 'ngx-moment';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-// import { QuicklinkModule } from 'ngx-quicklink';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from './components/confirm/confirm.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MomentModule } from 'ngx-moment';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
-import { GlobalReduceModule } from '@app/redux/global.module';
+import { ConfirmDialogComponent } from './components/confirm/confirm.component';
 
 const MATERIAL_COMPONENTS_MODULES = [
     MatDialogModule,
+    MatButtonModule,
 ];
 
 @NgModule({
     imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
+        MATERIAL_COMPONENTS_MODULES,
         TranslateModule,
-        GlobalReduceModule,
         MomentModule,
         RouterModule,
-        // QuicklinkModule,
-        MATERIAL_COMPONENTS_MODULES,
+        CommonModule,
     ],
     declarations: [
         ConfirmDialogComponent,
@@ -33,16 +28,12 @@ const MATERIAL_COMPONENTS_MODULES = [
         ConfirmDialogComponent,
     ],
     exports: [
-        // QuicklinkModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        TranslateModule,
-        GlobalReduceModule,
-        MomentModule,
-        RouterModule,
         ConfirmDialogComponent,
         MATERIAL_COMPONENTS_MODULES,
+        TranslateModule,
+        MomentModule,
+        RouterModule,
+        CommonModule,
     ]
 })
 export class SharedModule { }
