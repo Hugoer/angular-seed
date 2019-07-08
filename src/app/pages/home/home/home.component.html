@@ -1,8 +1,9 @@
 {{ time | amDateFormat:'L LTS'}}
+{{ time | amTimeAgo:true}}
 <p>home works!</p>
 
 {{ 'global.title' | translate}}
 
 <button mat-stroked-button color="primary">primary</button>
-<button mat-button color="accent">primary</button>
+<button mat-button color="accent" (click)="forceChangeLang()">force change locale - moment</button>
 <button mat-button color="primary" (click)="changeLanguage()">toggle idioma</button>

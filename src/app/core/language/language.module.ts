@@ -59,7 +59,6 @@ export class LanguageModule {
         if (parentModule) {
             throw new Error('LanguageModule has already been loaded. You should only import Core modules in the CoreModule only.');
         }
-
         this.localStorage.getItem('userLanguage')
             .pipe(take(1))
             .subscribe((data: string) => {
@@ -68,10 +67,10 @@ export class LanguageModule {
                     this.translate.use(languageStorage);
                 } else {
                     this.translate.use(environment.defaultI18nLang);
+                    this.localStorage.setItem('userLanguage', environment.defaultI18nLang).subscribe(() => { });
                 }
                 moment.locale(this.translate.currentLang);
             });
-
 
     }
 }

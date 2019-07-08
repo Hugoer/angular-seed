@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { LocalStorage } from '@ngx-pwa/local-storage';
 import { TranslateService } from '@ngx-translate/core';
 import { take } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-home',
@@ -26,6 +27,20 @@ export class HomeComponent implements OnInit {
           this.langService.use('en');
         } else if (data === 'en') {
           this.langService.use('es');
+        }
+      });
+  }
+
+  forceChangeLang() {
+    this.localStorage.getItem('userLanguage')
+      .pipe(take(1))
+      .subscribe((data: string) => {
+        if (data === 'es') {
+          moment.updateLocale('en');
+          this.localStorage.setItem('userLanguage', 'en').subscribe(() => { });
+        } else if (data === 'en') {
+          moment.updateLocale('es');
+          this.localStorage.setItem('userLanguage', 'es').subscribe(() => { });
         }
       });
   }
