@@ -22,7 +22,7 @@ const publicRoutes: Routes = [
 const privateRoutes: Routes = [
   {
     path: '',
-    canActivate: [UserRouteAccessService],
+    // canActivate: [UserRouteAccessService],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
   },
 ];
