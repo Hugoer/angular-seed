@@ -4,7 +4,7 @@ import { NgModule, ErrorHandler, Optional, SkipSelf } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { GlobalReduceModule } from '@app/redux/global.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,7 +19,8 @@ import { LanguageModule } from './language/language.module';
 import { environment } from '@environment/environment';
 
 const MATERIAL_CORE_MODULES = [
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
 ];
 
 @NgModule({
