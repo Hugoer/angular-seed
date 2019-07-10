@@ -1,18 +1,13 @@
 {
   "compileOnSave": false,
-  "include": [
-    "./src/app/*",
-    "./src/environments/*"
-  ],
   "compilerOptions": {
     "baseUrl": "./",
-    "moduleResolution": "node",
     "paths": {
       "@app/*": [
-        "./src/app/*"
+        "src/app/*"
       ],
       "@environment/*": [
-        "./src/environments/*"
+        "src/environments/*"
       ],
       "@nodemodules/*": [
         "node_modules/*"
@@ -21,9 +16,11 @@
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
-    "experimentalDecorators": true,
     "module": "esnext",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
     "importHelpers": true,
     "target": "es5",
     "typeRoots": [

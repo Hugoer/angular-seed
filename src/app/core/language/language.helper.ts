@@ -3,9 +3,10 @@ import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SvsEventManager } from '../handlers/eventmanager.service';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { take } from 'rxjs/operators';
 import * as moment from 'moment';
+import { DateAdapter } from '@angular/material/core';
 
 import { ITitleNavbar } from './lang.model';
 
@@ -20,7 +21,8 @@ export class SvLangService {
         private titleService: Title,
         private router: Router,
         private eventManager: SvsEventManager,
-        private localStorage: LocalStorage,
+        private localStorage: LocalStorageService,
+        private adapter: DateAdapter<any>,
     ) {
         this.rendererHtmlTag = this.rootRenderer.createRenderer(document.querySelector('html'), null);
         this.init();
@@ -39,21 +41,15 @@ export class SvLangService {
     }
 
     private changeLanguage(languageKey: string) {
-        this.localStorage.getItem('userLanguage')
-            .pipe(take(1))
-            .subscribe((data: string) => {
-                const languageStorage = data;
-                if ((!!languageStorage && languageStorage !== languageKey) || (!languageStorage)) {
-                    console.log('changeLanguage: ' + languageKey);
-                    this.localStorage.setItem('userLanguage', languageKey)
-                        .pipe(take(1))
-                        .subscribe(() => {
-                            moment.locale(languageKey);
-                            moment.updateLocale(languageKey);
-                            // this.translateService.resetLang(languageKey);
-                        });
-                }
-            });
+        const languageStorage = this.localStorage.retrieve('userLanguage');
+        if ((!!languageStorage && languageStorage !== languageKey) || (!languageStorage)) {
+            console.log('changeLanguage: ' + languageKey);
+            this.localStorage.store('userLanguage', languageKey);
+            // moment.locale(languageKey);
+            // moment.updateLocale(languageKey);
+            // this.translateService.resetLang(languageKey);
+            this.adapter.setLocale(languageKey);
+        }
     }
 
     private init() {

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { QuicklinkStrategy } from 'ngx-quicklink';
 
 import { LayoutModule } from './pages/layout/layout.module';
 import { environment } from '../environments/environment';
 import { DummyComponent } from './core/components/dummy/dummy.component';
 import { ShellComponent } from './pages/layout/shell/shell.component';
-import { UserRouteAccessService } from './core/guards/user-route-access-service';
+// import { UserRouteAccessService } from './core/guards/user-route-access-service';
 import { LoginComponent } from './pages/login/login.component';
 
 const publicRoutes: Routes = [
@@ -61,6 +62,7 @@ const routes: Routes = [
     LayoutModule,
     RouterModule.forRoot(routes, {
       onSameUrlNavigation: 'reload',
+      preloadingStrategy: QuicklinkStrategy,
       useHash: true,
       enableTracing: environment.enableTracing
     }),

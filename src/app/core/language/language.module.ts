@@ -9,13 +9,13 @@ import {
     TranslateService
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { LocalStorage } from '@ngx-pwa/local-storage';
-import * as moment from 'moment';
+import { LocalStorageService } from 'ngx-webstorage';
 
 import { AppMissingTranslationHandler } from './missing-translation';
 import { SvLangService } from './language.helper';
 import { environment } from '@environment/environment';
-import { take } from 'rxjs/operators';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export function translatePartialLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, 'i18n/', '.json');
@@ -48,29 +48,27 @@ export function missingTranslationHandler() {
     providers: [
         AppMissingTranslationHandler,
         SvLangService,
+        { provide: MAT_DATE_LOCALE, useValue: environment.defaultI18nLang },
+        { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+        { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
     ]
 })
 export class LanguageModule {
     constructor(
         private translate: TranslateService,
-        private localStorage: LocalStorage,
-        @Optional() @SkipSelf() parentModule: LanguageModule
+        private localStorage: LocalStorageService,
+        @Optional() @SkipSelf() parentModule: LanguageModule,
+        private adapter: DateAdapter<any>,
     ) {
         if (parentModule) {
             throw new Error('LanguageModule has already been loaded. You should only import Core modules in the CoreModule only.');
         }
-        this.localStorage.getItem('userLanguage')
-            .pipe(take(1))
-            .subscribe((data: string) => {
-                const languageStorage = data;
-                if (!!languageStorage) {
-                    this.translate.use(languageStorage);
-                } else {
-                    this.translate.use(environment.defaultI18nLang);
-                    this.localStorage.setItem('userLanguage', environment.defaultI18nLang).subscribe(() => { });
-                }
-                moment.locale(this.translate.currentLang);
-            });
+        const data = this.localStorage.retrieve('userLanguage');
+        const languageStorage = data || environment.defaultI18nLang;
+        if (!!languageStorage) {
+            this.translate.use(languageStorage);
+            this.adapter.setLocale(languageStorage);
+        }
 
     }
 }

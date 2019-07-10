@@ -1,11 +1,14 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, ErrorHandler, Optional, SkipSelf } from '@angular/core';
-import { StorageModule } from '@ngx-pwa/local-storage';
 import { BrowserModule } from '@angular/platform-browser';
 import { GlobalReduceModule } from '@app/redux/global.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoginComponent } from '../pages/login/login.component';
@@ -13,8 +16,6 @@ import { MainInterceptor } from './handlers/interceptor.service';
 import { ErrorsHandler } from './handlers/errors-handler';
 import { DummyComponent } from './components/dummy/dummy.component';
 import { LanguageModule } from './language/language.module';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '@environment/environment';
 
 const MATERIAL_CORE_MODULES = [
@@ -26,18 +27,22 @@ const MATERIAL_CORE_MODULES = [
         HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
-        StorageModule.forRoot({
-            IDBNoWrap: true,
-        }),
         LanguageModule,
         GlobalReduceModule,
-        FormsModule,
-        ReactiveFormsModule,
         MATERIAL_CORE_MODULES,
-        ServiceWorkerModule.register('ngsw-worker.js',
-            {
-                enabled: environment.production
-            }),
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: environment.production
+        }),
+        StoreModule.forRoot({}),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25, // Retains last 25 states
+            logOnly: environment.production, // Restrict extension to log-only mode
+        }),
+        NgxWebstorageModule.forRoot({
+            prefix: 'wl-',
+            separator: '-',
+            caseSensitive: true
+        }),
     ],
     declarations: [
         SpinnerComponent,
@@ -46,17 +51,16 @@ const MATERIAL_CORE_MODULES = [
     ],
     exports: [
         SpinnerComponent,
-        LoginComponent,
         HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
-        StorageModule,
         LanguageModule,
         GlobalReduceModule,
-        FormsModule,
-        ReactiveFormsModule,
         MATERIAL_CORE_MODULES,
         ServiceWorkerModule,
+        StoreModule,
+        StoreDevtoolsModule,
+        NgxWebstorageModule,
     ],
     providers: [
         MatSnackBar,

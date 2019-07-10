@@ -5,21 +5,28 @@ import { MatButtonModule } from '@angular/material/button';
 import { MomentModule } from 'ngx-moment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { QuicklinkModule } from 'ngx-quicklink';
 
 import { ConfirmDialogComponent } from './components/confirm/confirm.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-const MATERIAL_COMPONENTS_MODULES = [
+const MATERIAL_SHARED_MODULES = [
     MatDialogModule,
     MatButtonModule,
 ];
 
 @NgModule({
     imports: [
-        MATERIAL_COMPONENTS_MODULES,
+        MATERIAL_SHARED_MODULES,
         TranslateModule,
         MomentModule,
         RouterModule,
+        QuicklinkModule,
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
     ],
     declarations: [
         ConfirmDialogComponent,
@@ -29,11 +36,15 @@ const MATERIAL_COMPONENTS_MODULES = [
     ],
     exports: [
         ConfirmDialogComponent,
-        MATERIAL_COMPONENTS_MODULES,
+        MATERIAL_SHARED_MODULES,
         TranslateModule,
         MomentModule,
         RouterModule,
+        QuicklinkModule,
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
     ]
 })
 export class SharedModule { }

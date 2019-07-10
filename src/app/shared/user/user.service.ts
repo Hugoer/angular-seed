@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
-import { environment } from '@environment/environment';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
+import { LocalStorageService } from 'ngx-webstorage';
 
+import { environment } from '@environment/environment';
 import { IUser } from './user.model';
 // import { AppLanguageService } from '../../core/language/language.service';
 import { SvLangService } from '@app/core/language/language.helper';
-import { Router } from '@angular/router';
-
 import { LoadUser } from '@app/redux/user/user.actions';
 import { RootState } from '@app/redux/global.reducer';
-import { LocalStorage } from '@ngx-pwa/local-storage';
-import { take } from 'rxjs/operators';
-import { TranslateService } from '@ngx-translate/core';
-
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +24,7 @@ export class UserService {
         private http: HttpClient,
         private languageService: SvLangService,
         private translateService: TranslateService,
-        private localStorage: LocalStorage,
+        private localStorage: LocalStorageService,
         private router: Router,
         private store: Store<RootState>,
     ) {
@@ -37,11 +35,7 @@ export class UserService {
             this.http.post(environment.apiUrl + 'logout', {})
                 .toPromise()
                 .then(() => {
-                    this.localStorage.removeItem('userLanguage')
-                        .pipe(take(1))
-                        .subscribe(() => {
-                            sessionStorage.clear();
-                        });
+                    this.localStorage.clear('userLanguage');
                     resolve();
                 })
                 .catch((err) => {

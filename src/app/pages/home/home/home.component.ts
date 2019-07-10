@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { LocalStorage } from '@ngx-pwa/local-storage';
+import { LocalStorageService } from 'ngx-webstorage';
 import { TranslateService } from '@ngx-translate/core';
-import { take } from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Component({
@@ -15,34 +14,28 @@ export class HomeComponent implements OnInit {
   time = new Date();
 
   constructor(
-    private localStorage: LocalStorage,
+    private localStorage: LocalStorageService,
     private langService: TranslateService,
   ) { }
 
   changeLanguage() {
-    this.localStorage.getItem('userLanguage')
-      .pipe(take(1))
-      .subscribe((data: string) => {
-        if (data === 'es') {
-          this.langService.use('en');
-        } else if (data === 'en') {
-          this.langService.use('es');
-        }
-      });
+    const data = this.localStorage.retrieve('userLanguage');
+    if (data === 'es') {
+      this.langService.use('en');
+    } else if (data === 'en') {
+      this.langService.use('es');
+    }
   }
 
   forceChangeLang() {
-    this.localStorage.getItem('userLanguage')
-      .pipe(take(1))
-      .subscribe((data: string) => {
-        if (data === 'es') {
-          moment.updateLocale('en');
-          this.localStorage.setItem('userLanguage', 'en').subscribe(() => { });
-        } else if (data === 'en') {
-          moment.updateLocale('es');
-          this.localStorage.setItem('userLanguage', 'es').subscribe(() => { });
-        }
-      });
+    const data = this.localStorage.retrieve('userLanguage');
+    if (data === 'es') {
+      moment.updateLocale('en');
+      this.localStorage.store('userLanguage', 'en');
+    } else if (data === 'en') {
+      moment.updateLocale('es');
+      this.localStorage.store('userLanguage', 'es');
+    }
   }
 
   ngOnInit() {
