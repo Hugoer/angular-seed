@@ -4,8 +4,6 @@ import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SvsEventManager } from '../handlers/eventmanager.service';
 import { LocalStorageService } from 'ngx-webstorage';
-import { take } from 'rxjs/operators';
-import * as moment from 'moment';
 import { DateAdapter } from '@angular/material/core';
 
 import { ITitleNavbar } from './lang.model';

@@ -36,11 +36,12 @@ export class AdminRouteAccessService implements CanActivate, CanLoad {
         });
     }
 
-    canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
+    // tslint:disable-next-line: variable-name
+    canLoad(_route: Route): Observable<boolean> | Promise<boolean> | boolean {
         return this.can();
     }
-
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    // tslint:disable-next-line: variable-name
+    canActivate(_route: ActivatedRouteSnapshot, _state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         // return true;
         return this.can();
     }

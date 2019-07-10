@@ -1,6 +1,4 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
-
-// import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {
     TranslateModule,
@@ -10,12 +8,12 @@ import {
 } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LocalStorageService } from 'ngx-webstorage';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 import { AppMissingTranslationHandler } from './missing-translation';
 import { SvLangService } from './language.helper';
 import { environment } from '@environment/environment';
-import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 
 export function translatePartialLoader(http: HttpClient) {
     return new TranslateHttpLoader(http, 'i18n/', '.json');

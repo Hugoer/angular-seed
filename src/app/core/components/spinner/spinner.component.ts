@@ -18,7 +18,7 @@ export class SpinnerComponent {
         private eventManager: SvsEventManager
     ) {
         this.counter = 0;
-        this.eventManager.subscribe('httpStart', (response: any) => {
+        this.eventManager.subscribe('httpStart', () => {
             this.counter++;
             setTimeout(() => {
                 if (this.counter > 0) {
@@ -26,7 +26,7 @@ export class SpinnerComponent {
                 }
             }, environment.spinner);
         });
-        this.eventManager.subscribe('httpStop', (response: any) => {
+        this.eventManager.subscribe('httpStop', () => {
             this.counter--;
             if (this.counter <= 0) {
                 this.isVisible = false;

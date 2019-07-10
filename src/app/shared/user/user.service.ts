@@ -2,14 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from 'ngx-webstorage';
 
 import { environment } from '@environment/environment';
 import { IUser } from './user.model';
-// import { AppLanguageService } from '../../core/language/language.service';
-import { SvLangService } from '@app/core/language/language.helper';
 import { LoadUser } from '@app/redux/user/user.actions';
 import { RootState } from '@app/redux/global.reducer';
 
@@ -22,7 +19,6 @@ export class UserService {
 
     constructor(
         private http: HttpClient,
-        private languageService: SvLangService,
         private translateService: TranslateService,
         private localStorage: LocalStorageService,
         private router: Router,
@@ -104,13 +100,13 @@ export class UserService {
     }
 
     isAuthenticated(): Promise<boolean> {
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<boolean>((resolve) => {
             this.getIdentity()
                 .then((result) => {
                     resolve(!!result);
                 })
                 .catch((err) => {
-                    // console.error(err);
+                    console.error(err);
                     resolve(false);
                 });
         });

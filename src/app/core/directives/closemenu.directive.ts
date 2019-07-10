@@ -7,8 +7,8 @@ import { SvsEventManager } from '@app/core/handlers/eventmanager.service';
 
 export class CloseMenuDirective implements OnInit {
 
-    @HostListener('click', ['$event'])
-    clickEvent($event: any) {
+    @HostListener('click')
+    clickEvent() {
         this.eventManager.broadcast({
             name: 'closeSideNav'
         });

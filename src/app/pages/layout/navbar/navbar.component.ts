@@ -50,12 +50,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
         this.titleService.updateOnRouting();
 
-        const url: string = this.router.routerState.snapshot.url;
-        this.processActionsRouting(url);
+        // const url: string = this.router.routerState.snapshot.url;
+        this.processActionsRouting();
 
         this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                this.processActionsRouting(this.router.routerState.snapshot.url);
+                this.processActionsRouting();
             }
         });
 
@@ -70,7 +70,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
         return data;
     }
 
-    private processActionsRouting(url: string): void {
+    private processActionsRouting(): void {
         const route = this.getRouteObject(this.router.routerState.snapshot.root);
         if (!!route && !!route.data) {
             this.showMenu = !!route.data.showNavbarMenu;
@@ -90,7 +90,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     }
 
-    trackById(index, item) {
+    // tslint:disable-next-line: variable-name
+    trackById(_index, item) {
         return item.action;
     }
 

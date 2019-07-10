@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    // "allowUnusedLabels": false,
     "baseUrl": "./",
     "paths": {
       "@app/*": [

@@ -25,7 +25,7 @@ export class ShellComponent implements OnInit {
         private userService: UserService,
     ) {
         this.counter = 0;
-        eventManager.subscribe('xhrStart', (response: any) => {
+        eventManager.subscribe('xhrStart', () => {
             this.counter++;
             if (this.counter > 0) {
                 setTimeout(() => {
@@ -33,7 +33,7 @@ export class ShellComponent implements OnInit {
                 });
             }
         });
-        eventManager.subscribe('xhrStop', (response: any) => {
+        eventManager.subscribe('xhrStop', () => {
             this.counter--;
             if (this.counter === 0) {
                 this.showProgressBar = false;
@@ -45,7 +45,7 @@ export class ShellComponent implements OnInit {
         // y aún cambiando de módulos (lazy routing) solo se crea una vez
         if (environment.mustRefreshToken) {
             timer(0, environment.forceRefreshToken)
-                .subscribe((val) => {
+                .subscribe(() => {
                     this.userService.getServerProfileInfo();
                 });
         }
@@ -61,10 +61,10 @@ export class ShellComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.eventManager.subscribe('openSideNav', (data: any) => {
+        this.eventManager.subscribe('openSideNav', () => {
             this.open();
         });
-        this.eventManager.subscribe('closeSideNav', (data: any) => {
+        this.eventManager.subscribe('closeSideNav', () => {
             this.close();
         });
 

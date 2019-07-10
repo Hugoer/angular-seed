@@ -80,7 +80,7 @@ export class MainInterceptor implements HttpInterceptor {
 
         const proxy = {
             // tslint:disable
-            open: function (arg, xhr) {
+            open: function (_arg, xhr) {
                 xhr.addEventListener('load', () => {
                     hideXhr(xhr);
                 });
@@ -88,7 +88,7 @@ export class MainInterceptor implements HttpInterceptor {
                     hideXhr(xhr);
                 });
             },
-            send: function (arg, xhr) {
+            send: function (_arg, xhr) {
                 showXhr(xhr);
             }
             // tslint:enable
