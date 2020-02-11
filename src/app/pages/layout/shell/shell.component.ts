@@ -14,7 +14,7 @@ import { UserService } from '@app/shared/user/user.service';
 
 export class ShellComponent implements OnInit {
 
-    @ViewChild('fnMenu', { static: false }) menu: MatSidenav;
+    @ViewChild('fnMenu') menu: MatSidenav;
     showProgressBar = false;
     counter: number;
 
