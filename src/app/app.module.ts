@@ -13,6 +13,6 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  // bootstrap: [AppComponent]
 })
 export class AppModule { }

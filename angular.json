@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "workLog": {
+    "seed": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -63,7 +63,9 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
+              "commonChunk": false,
+              "es5BrowserSupport": false,
+              "buildOptimizer": false,
               "baseHref": "./",
               "budgets": [
                 {
@@ -73,7 +75,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb"
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ],
               "serviceWorker": true,
@@ -84,18 +87,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "workLog:build"
+            "browserTarget": "seed:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "workLog:build:production"
+              "browserTarget": "seed:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "workLog:build"
+            "browserTarget": "seed:build"
           }
         },
         "test": {
@@ -135,16 +138,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "workLog:serve"
+            "devServerTarget": "seed:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "workLog:serve:production"
+              "devServerTarget": "seed:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "workLog"
+  "defaultProject": "seed"
 }

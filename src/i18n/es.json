@@ -91,7 +91,8 @@
 		"ribbon": {
 			"dev": "Development"
 		},
-		"item-count": "Showing {{first}} - {{second}} of {{total}} items."
+		"item-count": "Showing {{first}} - {{second}} of {{total}} items.",
+		"lostdata": "Tiene datos pendientes de guardar! Si abandona la página, se perderán sus datos."
 	},
 	"error": {
 		"internalServerError": "Internal server error",

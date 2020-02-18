@@ -91,7 +91,8 @@
 		"ribbon": {
 			"dev": "Development"
 		},
-		"item-count": "Showing {{first}} - {{second}} of {{total}} items."
+		"item-count": "Showing {{first}} - {{second}} of {{total}} items.",
+		"lostdata": "You have unsaved changes! If you leave, your changes will be lost."
 	},
 	"error": {
 		"internalServerError": "Internal server error",
