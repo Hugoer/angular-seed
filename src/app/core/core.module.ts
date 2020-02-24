@@ -61,7 +61,9 @@ const MATERIAL_CORE_MODULES = [
         MATERIAL_CORE_MODULES,
         ServiceWorkerModule,
         StoreModule,
-        StoreDevtoolsModule,
+        !environment.production ?
+            StoreDevtoolsModule :
+            [],
         NgxWebstorageModule,
     ],
     providers: [

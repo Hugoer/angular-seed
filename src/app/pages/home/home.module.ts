@@ -9,7 +9,6 @@ import { HomeComponent } from './home/home.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { UserEffects } from '@app/redux/user/user.effect';
 import { userReducer } from '@app/redux/user/user.reducer';
-// import { UserSandbox } from '@app/redux/user/user.sandbox';
 
 const MATERIAL_PAGES_MODULES = [
   MatButtonModule,
@@ -32,7 +31,6 @@ const MATERIAL_PAGES_MODULES = [
     MATERIAL_PAGES_MODULES,
   ],
   providers: [
-    // UserSandbox,
   ]
 })
 export class HomeModule { }

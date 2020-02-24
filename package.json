@@ -11,10 +11,11 @@
     "e2e": "ng e2e",
     "i18n": "gulp i18n",
     "ngcc:prepare": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",
-    "postinstall": "node locale.js && npm run ngcc:prepare",
+    "postinstall": "node locale.js",
     "build:prod": "npm run i18n && ng build --prod",
     "build:prod:stats": "npm run i18n && ng build --prod --stats-json",
-    "bundle-report": "npm run build:prod:stats && webpack-bundle-analyzer dist/seed/stats.json"
+    "analyzer": "webpack-bundle-analyzer dist/seed/stats-es2015.json",
+    "bundle-report": "npm run build:prod:stats && npm run analyzer"
   },
   "private": true,
   "dependencies": {
