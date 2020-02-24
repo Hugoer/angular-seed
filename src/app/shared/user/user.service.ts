@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Observable } from 'rxjs';
 
 import { environment } from '@environment/environment';
 import { IUser } from './user.model';
-import { LoadUser } from '@app/redux/user/user.actions';
-import { RootState } from '@app/redux/global.reducer';
 
 @Injectable({
     providedIn: 'root'
@@ -22,27 +20,19 @@ export class UserService {
         private translateService: TranslateService,
         private localStorage: LocalStorageService,
         private router: Router,
-        private store: Store<RootState>,
     ) {
     }
 
-    logout(): Promise<any> {
-        return new Promise((resolve, reject) => {
-            this.http.post(environment.apiUrl + 'logout', {})
-                .toPromise()
-                .then(() => {
-                    this.localStorage.clear('userLanguage');
-                    resolve();
-                })
-                .catch((err) => {
-                    console.error(err);
-                    reject(err);
-                });
+    logout(): Observable<any> {
+        return new Observable((observer) => {
+            this.localStorage.clear('userLanguage');
+            observer.next();
+            observer.complete();
         });
     }
 
-    getIdentity(force?: boolean): Promise<IUser> {
-        return new Promise<IUser>((resolve, reject) => {
+    getIdentity(force?: boolean): Observable<IUser> {
+        return new Observable<IUser>((observer) => {
             if (force === true || !this.user) {
                 this.http.get(environment.apiUrl + 'account')
                     .toPromise()
@@ -69,10 +59,11 @@ export class UserService {
                         if (this.user.authorities.length === 0 || !this.user.authorities.includes(environment.roleAuthenticated)) {
                             this.router.navigate(['no-user']);
                         } else {
-                            this.store.dispatch(new LoadUser(this.user));
+                            // this.store.dispatch(new LoadUser(this.user));
                         }
 
-                        resolve(response);
+                        observer.next(response);
+                        observer.complete();
                     })
                     .catch((err) => {
                         if (err.status === 403) {
@@ -82,13 +73,16 @@ export class UserService {
                             }
                             this.router.navigate(['no-user']);
                         }
-                        reject(err);
+                        observer.error(err);
+                        observer.complete();
                     });
             } else if (!!this.user) {
-                resolve(this.user);
+                // resolve(this.user);
+                observer.next(this.user);
+                observer.complete();
             }
-
         });
+
     }
 
     getLanguage(): string {
@@ -99,18 +93,18 @@ export class UserService {
         }
     }
 
-    isAuthenticated(): Promise<boolean> {
-        return new Promise<boolean>((resolve) => {
-            this.getIdentity()
-                .then((result) => {
-                    resolve(!!result);
-                })
-                .catch((err) => {
-                    console.error(err);
-                    resolve(false);
-                });
-        });
-    }
+    // isAuthenticated(): Promise<boolean> {
+    //     return new Promise<boolean>((resolve) => {
+    //         this.getIdentity()
+    //             .then((result) => {
+    //                 resolve(!!result);
+    //             })
+    //             .catch((err) => {
+    //                 console.error(err);
+    //                 resolve(false);
+    //             });
+    //     });
+    // }
 
     getToken(): string {
         return !!this.user ? this.user.accessToken : null;

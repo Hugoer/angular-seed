@@ -1,10 +1,13 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MatDialog } from '@angular/material/dialog';
 import { environment } from '@environment/environment';
 import { IUser } from '@app/shared/user/user.model';
-import { UserService } from '@app/shared/user/user.service';
+import { takeUntil, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 import { ConfirmDialogComponent } from '@app/shared/components/confirm/confirm.component';
+import { UserSandbox } from '@app/redux/user/user.sandbox';
 
 @Component({
     selector: 'app-menu',
@@ -12,7 +15,9 @@ import { ConfirmDialogComponent } from '@app/shared/components/confirm/confirm.c
     styleUrls: ['./menu.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
+
+    private unsubscribe$ = new Subject<void>();
 
     user: Promise<IUser>;
     userAdmin = false;
@@ -21,19 +26,27 @@ export class MenuComponent implements OnInit {
 
     constructor(
         private translateService: TranslateService,
-        private userService: UserService,
         public dialog: MatDialog,
+        private userSandbox: UserSandbox,
     ) {
         this.envDev = !environment.production;
     }
 
     ngOnInit() {
-        this.user = this.userService.getIdentity();
-        this.user
-            .then((user) => {
+        this.userSandbox.getUser$
+            .pipe(
+                takeUntil(this.unsubscribe$),
+                filter((user) => !!user),
+            )
+            .subscribe((user) => {
                 this.userAdmin = user.authorities.includes(environment.roleAccessAdminModule);
                 this.isUser = user.authorities.includes(environment.roleAuthenticated);
             });
+    }
+
+    ngOnDestroy() {
+        this.unsubscribe$.next();
+        this.unsubscribe$.complete();
     }
 
     signOut(): void {
@@ -50,10 +63,11 @@ export class MenuComponent implements OnInit {
                 // TODO: esto es horrible... revisar!
                 const resultClosed = JSON.parse(result);
                 if (resultClosed === true) {
-                    this.userService.logout()
-                        .then(() => {
-                            window.location.href = '.';
-                        });
+                    this.userSandbox.doLogout();
+                    // this.userService.logout()
+                    //     .then(() => {
+                    //         window.location.href = '.';
+                    //     });
                 }
             }
         });
