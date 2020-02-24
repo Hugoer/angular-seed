@@ -6,10 +6,10 @@ import { MomentModule } from 'ngx-moment';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { QuicklinkModule } from 'ngx-quicklink';
-
-import { ConfirmDialogComponent } from './components/confirm/confirm.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import { ConfirmDialogComponent } from './components/confirm/confirm.component';
 
 const MATERIAL_SHARED_MODULES = [
     MatDialogModule,
