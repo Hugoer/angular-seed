@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule, ErrorHandler, Optional, SkipSelf } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { GlobalReduceModule } from '@app/redux/global.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -17,6 +16,7 @@ import { ErrorsHandler } from './handlers/errors-handler';
 import { DummyComponent } from './components/dummy/dummy.component';
 import { LanguageModule } from './language/language.module';
 import { environment } from '@environment/environment';
+import { EffectsModule } from '@ngrx/effects';
 
 const MATERIAL_CORE_MODULES = [
     MatProgressSpinnerModule,
@@ -29,16 +29,18 @@ const MATERIAL_CORE_MODULES = [
         BrowserModule,
         BrowserAnimationsModule,
         LanguageModule,
-        GlobalReduceModule,
         MATERIAL_CORE_MODULES,
         ServiceWorkerModule.register('ngsw-worker.js', {
             enabled: environment.production
         }),
         StoreModule.forRoot({}),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25, // Retains last 25 states
-            logOnly: environment.production, // Restrict extension to log-only mode
-        }),
+        EffectsModule.forRoot([]),
+        !environment.production ?
+            StoreDevtoolsModule.instrument({
+                maxAge: 25, // Retains last 25 states
+                logOnly: false, // Restrict extension to log-only mode
+            }) :
+            [],
         NgxWebstorageModule.forRoot({
             prefix: 'wl-',
             separator: '-',
@@ -56,11 +58,12 @@ const MATERIAL_CORE_MODULES = [
         BrowserModule,
         BrowserAnimationsModule,
         LanguageModule,
-        GlobalReduceModule,
         MATERIAL_CORE_MODULES,
         ServiceWorkerModule,
         StoreModule,
-        StoreDevtoolsModule,
+        !environment.production ?
+            StoreDevtoolsModule :
+            [],
         NgxWebstorageModule,
     ],
     providers: [

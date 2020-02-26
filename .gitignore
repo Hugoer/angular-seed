@@ -47,5 +47,6 @@ Thumbs.db
 
 # i18n files
 ./src/i18n/*.json
+src/i18n/
 .firebaserc
 .firebase/
