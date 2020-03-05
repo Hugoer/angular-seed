@@ -1,4 +1,4 @@
-import { tap } from 'rxjs/operators';
+import { tap, finalize } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
     HttpInterceptor,
@@ -85,6 +85,9 @@ export class MainInterceptor implements HttpInterceptor {
                     hideXhr(xhr);
                 });
                 xhr.addEventListener('error', () => {
+                    hideXhr(xhr);
+                });
+                xhr.addEventListener('abort', () => {
                     hideXhr(xhr);
                 });
             },
@@ -240,14 +243,17 @@ export class MainInterceptor implements HttpInterceptor {
                 this.showNotification(this.translateService.instant('global.http.409'), ToastType.warn, err.error.detail);
                 break;
             case (statusCode < 600 && statusCode >= 500):
-                this.showNotification(
-                    this.translateService.instant('global.http.500'),
-                    ToastType.warn,
+                const errDetail =
+                    !!err.error &&
                     (
                         err.error.detail ||
                         err.error.title ||
                         `${err.error.error} ${!!err.error.message ? '(' + err.error.message + ')' : ''}`
-                    )
+                    );
+                this.showNotification(
+                    this.translateService.instant('global.http.500'),
+                    ToastType.warn,
+                    errDetail
                 );
                 break;
             default:
@@ -267,33 +273,35 @@ export class MainInterceptor implements HttpInterceptor {
 
         const httpEvent = next.handle(dummyrequest);
 
-        return httpEvent.pipe(tap((event) => {
-            if (event instanceof HttpResponse) {
+        return httpEvent
+            .pipe(
+                tap((event) => {
+                    if (event instanceof HttpResponse) {
 
-                const serverAlert: IServerMessage = {
-                    alert: event.headers.get('x-app-alert'),
-                    param: +event.headers.get('x-app-params')
-                };
+                        const serverAlert: IServerMessage = {
+                            alert: event.headers.get('x-app-alert'),
+                            param: +event.headers.get('x-app-params')
+                        };
 
-                this.processStatus(event.status, null, serverAlert);
-                this.svsEventManager.broadcast({
-                    name: 'httpStop'
-                });
-            }
-        }, (err) => {
-            this.svsEventManager.broadcast({
-                name: 'httpStop'
-            });
-            if (err instanceof HttpErrorResponse) {
-                if (err.status !== 200) {
-                    this.processStatus(err.status, err);
-                } else {
-                    // Incluimos esto aquí porque puede ser que el API no devuelva un json y al procesar la respuesta falle
-                    // aún siendo un 200. Si ha entrado aquí (err) es que algo ha ocurrido y debemos notificarlo.
-                    this.processStatus(-1, err);
-                }
-            }
-        }));
+                        this.processStatus(event.status, null, serverAlert);
+                    }
+                }, (err) => {
+                    if (err instanceof HttpErrorResponse) {
+                        if (err.status !== 200) {
+                            this.processStatus(err.status, err);
+                        } else {
+                            // Incluimos esto aquí porque puede ser que el API no devuelva un json y al procesar la respuesta falle
+                            // aún siendo un 200. Si ha entrado aquí (err) es que algo ha ocurrido y debemos notificarlo.
+                            this.processStatus(-1, err);
+                        }
+                    }
+                }),
+                finalize(() => {
+                    this.svsEventManager.broadcast({
+                        name: 'httpStop'
+                    });
+                })
+            );
 
     }
 
