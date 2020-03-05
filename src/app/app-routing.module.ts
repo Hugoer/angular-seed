@@ -26,6 +26,10 @@ const privateRoutes: Routes = [
     // canActivate: [UserRouteAccessService],
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
   },
+  {
+    path: 'test',
+    loadChildren: () => import('./pages/test/test.module').then(m => m.TestModule),
+  },
 ];
 
 const adminRoutes: Routes = [
