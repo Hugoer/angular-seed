@@ -7,7 +7,7 @@ import { SwUpdate } from '@angular/service-worker';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'workLog';
+  title = 'seed';
   constructor(
     private swUpdate: SwUpdate,
   ) {
