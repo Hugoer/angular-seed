@@ -1,0 +1,83 @@
+@import '~@angular/material/_theming.scss';
+$NEGRO: (
+    50 : #E0E2E4,
+    100 : #B3B6BA,
+    200 : #80868D,
+    300 : #4D565F,
+    400 : #26313C,
+    500 : #000D1A,
+    600 : #000B17,
+    700 : #000913,
+    800 : #00070F,
+    900 : #000308,
+    A100 : #4E4EFF,
+    A200 : #1B1BFF,
+    A400 : #0000E7,
+    A700 : #0000CE,
+    contrast: (
+        50 : #000D1A,
+        100 : #000D1A,
+        200 : #000D1A,
+        300 : #FFFFFF,
+        400 : #FFFFFF,
+        500 : #FFFFFF,
+        600 : #FFFFFF,
+        700 : #FFFFFF,
+        800 : #FFFFFF,
+        900 : #FFFFFF,
+        A100 : #FFFFFF,
+        A200 : #FFFFFF,
+        A400 : #FFFFFF,
+        A700 : #FFFFFF,
+    )
+);
+$ORANGE: (
+    50: #FCEEE4,
+    100: #F7D5BD,
+    200: #F1B991,
+    300: #EB9C64,
+    400: #E78743,
+    500: #E37222,
+    600: #E06A1E,
+    700: #DC5F19,
+    800: #D85514,
+    900: #D0420C,
+    A100: #FFFCFC,
+    A200: #FFD5C9,
+    A400: #FFAE96,
+    A700: #FF9A7C,
+    contrast: (
+        50 : #000D1A,
+        100 : #000D1A,
+        200 : #000D1A,
+        300 : #000D1A,
+        400 : #000D1A,
+        500 : #000D1A,
+        600 : #000D1A,
+        700 : #FFFFFF,
+        800 : #FFFFFF,
+        900 : #FFFFFF,
+        A100 : #000D1A,
+        A200 : #000D1A,
+        A400 : #000D1A,
+        A700 : #000D1A,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://www.google.com/design/spec/style/color.html
+$sv-app-primary: mat-palette($ORANGE);
+$sv-app-accent: mat-palette($NEGRO);
+
+// The warn palette is optional (defaults to red).
+$sv-app-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$sv-app-theme: mat-light-theme($sv-app-primary, $sv-app-accent, $sv-app-warn);
+$sv-primary: mat-color(map-get($sv-app-theme, primary));
+$sv-primary-contrast: mat-contrast(map-get($sv-app-theme, primary),500);
+$sv-secondary: mat-color(map-get($sv-app-theme, accent));
+$sv-secondary-contrast: mat-contrast(map-get($sv-app-theme, accent),500);
+$sv-warn: mat-color(map-get($sv-app-theme, warn));
+$sv-warn-contrast: mat-contrast(map-get($sv-app-theme, warn),500);

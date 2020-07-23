@@ -1,6 +1,6 @@
 @import '../../../../css/public/variables';
 
-.wg__side-menu {
+.sd__side-menu {
 	display: flex;
 	flex-direction: column;
 
@@ -16,7 +16,7 @@
 	// 	flex: 1;
 
 	// align-items: flex-end;
-	.wg__item {
+	.sd__item {
 		cursor: pointer;
 	}
 	// }
@@ -27,7 +27,7 @@
 		}
 	}
 	h3.mat-subheader,
-	.wg__item {
+	.sd__item {
 		color: white;
 		background-color: $sv-secondary;
 		.mat-list-item {
@@ -38,17 +38,17 @@
 		margin-top: 15px;
 		margin-bottom: 15px;
 	}
-	.wg__item--active {
+	.sd__item--active {
 		text-transform: uppercase;
 
 		background-color: $sv-primary;
 	}
-	.wg__side-divider {
+	.sd__side-divider {
 		background-color: white;
 	}
 }
 
-.wg__side-login {
+.sd__side-login {
 	display: block;
 
 	margin: 0 auto;
