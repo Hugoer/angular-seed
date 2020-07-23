@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/worklog",
+    "public": "dist/seed",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,15 +15,6 @@
     "headers": [
       {
         "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css|js|woff2|css|png)",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=31536000"
-          }
-        ]
-      },
-      {
-        "source": "i18n/*.@(json)",
         "headers": [
           {
             "key": "Cache-Control",

@@ -1,0 +1,17 @@
+@import './public/theme-variables';
+
+::-webkit-scrollbar {
+	width: 18px;
+	height: 18px;
+}
+::-webkit-scrollbar-corner {
+	background-color: #FFFFFF;
+}
+::-webkit-scrollbar-thumb {
+	border: solid 6px #FFFFFF;
+	border-radius: 9px;
+	background-color: #C8C8C8;
+}
+::-webkit-scrollbar-track {
+	background-color: $sv-background;
+}

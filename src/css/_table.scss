@@ -1,4 +1,35 @@
+@import './table-responsive';
+
+.mat-header-cell {
+	opacity: $opacity-header;
+
+	font-size: $fsize-header;
+	font-weight: $fweight;
+}
+
 .table--fullwidth {
 	width: 100%;
 	max-width: 100%;
 }
+
+.sd__table {
+	overflow: auto;
+
+	margin-bottom: 15px;
+	&.sd__table--auto {
+		height: auto;
+	}
+	&:not(.sd__table--auto) {
+		height: 300px;
+	}
+	// .sd__table-link {
+	// 	mat-icon {
+	// 		margin-right: 10px;
+	// 	}
+	// }
+}
+
+table {
+	width: 100%;
+}
+

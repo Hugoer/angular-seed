@@ -8,10 +8,18 @@
       "resources": {
         "files": [
           "/favicon.ico",
+          "/favicon.png",
           "/index.html",
+          "/manifest.webmanifest",
           "/*.css",
-          "/*.js",
-          "/manifest.webmanifest"
+          "/vendor/*.js",
+          "/assets/fonts/*.woff2",
+          "/assets/fonts/*.css",
+          "/main-es2018.*.js",
+          "/polyfills-es2018.*.js",
+          "/runtime-es2018.*.js",
+          "/common-es2018.*.js",
+          "/i18n/*"
         ]
       }
     },
@@ -22,9 +30,11 @@
       "resources": {
         "files": [
           "/assets/**",
+          "/vendor/*.*",
           "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)",
           "./src/**/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani)",
-          "./src/i18n/*.json"
+          "./src/i18n/*.json",
+          "/*.js"
         ]
       }
     }

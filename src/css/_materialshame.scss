@@ -1,19 +1,6 @@
-.sd__margin {
-	display: flex;
-
-	min-height: calc(100vh - 64px);
-}
-
 mat-form-field {
 	margin: 5px;
 }
-
-.sd__margin router-outlet + * {
-	display: block;
-
-	padding: 15px;
-}
-
 
 mat-card-actions.mat-card-actions {
 	display: flex;
@@ -29,7 +16,22 @@ mat-card-actions.mat-card-actions {
 		margin-right: 10px;
 	}
 }
+mat-card-header.mat-card-header {
+	flex-direction: column;
+}
 
 .cdk-drag-handle {
 	cursor: grab;
+}
+
+.sd__margin {
+	display: flex;
+
+	min-height: calc(100vh - 64px);
+}
+
+.sd__margin router-outlet + * {
+	display: block;
+
+	padding: 15px;
 }

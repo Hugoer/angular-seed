@@ -1,0 +1,128 @@
+$opacity-header: .7;
+$fsize-header: 14px;
+$fweight: 500;
+.sd__table--responsive {
+	.table__label-item {
+		display: none;
+
+		opacity: $opacity-header;
+
+		font-size: $fsize-header;
+		font-weight: $fweight;
+	}
+
+	@media screen and (max-width: 450px) {
+		.mat-paginator-container {
+			display: flex;
+			flex-direction: column;
+		}
+		.mat-paginator-range-actions {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			.mat-paginator-range-label {
+				width: 100%;
+
+				text-align: center;
+			}
+			.mat-paginator-navigation-last,
+			.mat-paginator-navigation-first {
+				display: none;
+			}
+		}
+	}
+
+	@media screen and (max-width: 960px) {
+		.mat-header-row {
+			display: none;
+		}
+
+		tbody {
+			display: block;
+
+			width: 100%;
+		}
+
+		.table__label-item {
+			display: block;
+		}
+		.mat-table {
+			background: transparent;
+			* {
+				box-sizing: border-box;
+			}
+
+			.mat-row {
+				position: relative;
+
+				display: block;
+				clear: both;
+				overflow: hidden;
+
+				height: auto;
+
+				border-radius: 3px;
+				background-color: #FFFFFF;
+				box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+				+ .mat-row {
+					margin-top: 24px;
+				}
+			}
+
+			.mat-cell {
+				display: block;
+
+				width: 100%;
+				margin: 16px 0;
+				padding: 0 16px;
+
+				border: 0 none;
+				&:first-child {
+					padding: 0 48px 0 16px;
+					a {
+						// font-weight: 400;
+						color: inherit;
+
+						font-size: 20px;
+					}
+					&:before {
+						display: none;
+					}
+				}
+				&.m-card-sub-title {
+					margin-top: -8px;
+					padding: 0 48px 0 16px;
+
+					color: rgba(0,0,0,.54);
+				}
+			}
+
+			.has_label_on_mobile {
+				&:before {
+					display: inline;
+
+					content: attr(data-label);
+
+					font-weight: normal;
+				}
+			}
+
+			.mat-column-star {
+				position: absolute;
+				top: 0;
+				right: 0;
+
+				width: auto;
+				margin: 0;
+				padding: 8px 0 0 !important;
+				&:before {
+					display: none;
+				}
+			}
+		}
+
+		table + .mat-paginator {
+			margin-top: 24px;
+		}
+	}
+}

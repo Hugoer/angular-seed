@@ -1,4 +1,4 @@
-@import './theme-variables';
+@import './public/theme-variables';
 @include mat-core();
 
 @include angular-material-theme($sv-app-theme);

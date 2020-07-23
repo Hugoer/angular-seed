@@ -1,6 +1,6 @@
 {
-  "name": "workLog",
-  "short_name": "workLog",
+  "name": "seed",
+  "short_name": "seed",
   "theme_color": "#E37222",
   "background_color": "#E37222",
   "display": "standalone",

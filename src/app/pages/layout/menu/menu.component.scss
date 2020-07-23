@@ -1,4 +1,4 @@
-@import '../../../../css/public/variables';
+@import '../../../../css/public/theme-variables';
 
 .sd__side-menu {
 	display: flex;
@@ -11,15 +11,10 @@
 
 	background-color: $sv-secondary;
 
-	// .item__bottom {
-	// 	display: flex;
-	// 	flex: 1;
-
-	// align-items: flex-end;
 	.sd__item {
 		cursor: pointer;
 	}
-	// }
+
 	a {
 		text-decoration: none;
 		&:focus {
