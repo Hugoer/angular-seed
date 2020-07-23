@@ -1,10 +1,10 @@
-.wg__progress {
+.sd__progress {
 	position: absolute;
 	z-index: 99;
 	top: 0;
 
 	display: none;
-	&.wg__progress--active {
+	&.sd__progress--active {
 		display: block;
 	}
 }

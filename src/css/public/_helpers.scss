@@ -1,4 +1,6 @@
+@import './variables';
 $date-column: 100px;
+$long-date-column: 200px;
 $checkbox-column: 50px;
 $code-desc-column: 100px;
 $xs-desc-column: 50px;
@@ -10,6 +12,10 @@ $number-column: 100px;
 
 %date-column {
 	min-width: $date-column;
+}
+
+%long-date-column {
+	min-width: $long-date-column;
 }
 
 %xs-desc-column {
@@ -49,4 +55,10 @@ $number-column: 100px;
 
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+%fullwidth {
+	flex: 1;
+
+	width: 100%;
 }

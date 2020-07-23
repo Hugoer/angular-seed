@@ -1,0 +1,16 @@
+@import './public/theme-variables';
+
+.style-success {
+	color: $sv-primary-contrast;
+	background-color: $sv-primary;
+}
+.style-success .mat-simple-snackbar-action {
+	color: $sv-primary-contrast;
+}
+.style-error {
+	color: $sv-warn-contrast;
+	background-color: $sv-warn;
+}
+.style-error .mat-simple-snackbar-action {
+	color: $sv-warn-contrast;
+}

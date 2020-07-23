@@ -1,34 +1,34 @@
-<mat-list class="wg__side-menu">
-    <div class="wg__side-login">
-        <!-- <img class="user__icon" [attr.src]="'./assets/babcock-logo.png'" alt="" width="75" height="97"> -->
-        <img class="user__icon" width="75" alt="Angular Logo"
-            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-    </div>
+<mat-list class="sd__side-menu">
+  <div class="sd__side-login">
+    <!-- <img class="user__icon" [attr.src]="'./assets/babcock-logo.png'" alt="" width="75" height="97"> -->
+    <img class="user__icon" width="75" alt="Angular Logo"
+      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+  </div>
 
-    <ng-container *ngIf="(user | async )as _user">
-        <h3 mat-subheader>{{'main.user'| translate}}</h3>
+  <ng-container *ngIf="(user | async )as _user">
+    <h3 mat-subheader>{{'main.user'| translate}}</h3>
 
-        <!-- <ng-container *ngIf="!!config">
-            <a href="{{config.profileUrl}}" target="_blank" class="wg__item">
+    <!-- <ng-container *ngIf="!!config">
+            <a href="{{config.profileUrl}}" target="_blank" class="sd__item">
                 <mat-list-item appClosemenu>
                     <mat-icon mat-list-icon>perm_identity</mat-icon>
                     <span mat-line>{{_user.firstName}}</span>
                 </mat-list-item>
             </a>
         </ng-container> -->
-        <!-- <ng-container > -->
-        <div class="wg__item">
-            <mat-list-item appClosemenu>
-                <mat-icon mat-list-icon>perm_identity</mat-icon>
-                <span mat-line>{{_user.firstName}}</span>
-            </mat-list-item>
-        </div>
-        <!-- </ng-container> -->
+    <!-- <ng-container > -->
+    <div class="sd__item">
+      <mat-list-item appClosemenu>
+        <mat-icon mat-list-icon>perm_identity</mat-icon>
+        <span mat-line>{{_user.firstName}}</span>
+      </mat-list-item>
+    </div>
+    <!-- </ng-container> -->
 
-        <!-- <ng-container *ngIf="isUser">
-            <mat-divider class="wg__side-divider"></mat-divider>
+    <!-- <ng-container *ngIf="isUser">
+            <mat-divider class="sd__side-divider"></mat-divider>
 
-            <a class="wg__item" [routerLink]="['/']" [routerLinkActive]="['wg__item--active']"
+            <a class="sd__item" [routerLink]="['/']" [routerLinkActive]="['sd__item--active']"
                 [routerLinkActiveOptions]="{exact:true}">
                 <mat-list-item appClosemenu>
                     <mat-icon mat-list-icon>layers</mat-icon>
@@ -37,27 +37,27 @@
             </a>
         </ng-container> -->
 
-    </ng-container>
+  </ng-container>
 
-    <ng-container *ngIf="userAdmin">
+  <ng-container *ngIf="userAdmin">
 
-        <mat-divider class="wg__side-divider"></mat-divider>
+    <mat-divider class="sd__side-divider"></mat-divider>
 
-        <h3 mat-subheader>{{'main.administration'| translate}}</h3>
+    <h3 mat-subheader>{{'main.administration'| translate}}</h3>
 
-        <a class="wg__item" [routerLink]="['/admin','role']" [routerLinkActive]="['wg__item--active']">
-            <mat-list-item appClosemenu>
-                <mat-icon mat-list-icon>person</mat-icon>
-                <span mat-line>{{'webgisApp.role.home.title' | translate}}</span>
-            </mat-list-item>
-        </a>
+    <a class="sd__item" [routerLink]="['/admin','role']" [routerLinkActive]="['sd__item--active']">
+      <mat-list-item appClosemenu>
+        <mat-icon mat-list-icon>person</mat-icon>
+        <span mat-line>{{'webgisApp.role.home.title' | translate}}</span>
+      </mat-list-item>
+    </a>
 
-    </ng-container>
+  </ng-container>
 
-    <!-- <ng-container *ngIf="envDev">
-        <mat-divider class="wg__side-divider"></mat-divider>
+  <!-- <ng-container *ngIf="envDev">
+        <mat-divider class="sd__side-divider"></mat-divider>
 
-        <a href="http://localhost:4200/swagger-ui/index.html" target="_blank" class="wg__item">
+        <a href="http://localhost:4200/swagger-ui/index.html" target="_blank" class="sd__item">
             <mat-list-item appClosemenu>
                 <mat-icon mat-list-icon>list_alt</mat-icon>
                 <span mat-line>SWAGGER</span>
@@ -65,14 +65,14 @@
         </a>
     </ng-container> -->
 
-    <mat-divider class="wg__side-divider"></mat-divider>
+  <mat-divider class="sd__side-divider"></mat-divider>
 
-    <div class="item__bottom" class="wg__item">
-        <mat-list-item (click)="signOut()">
-            <mat-icon mat-list-icon>power_settings_new</mat-icon>
+  <div class="item__bottom" class="sd__item">
+    <mat-list-item (click)="signOut()">
+      <mat-icon mat-list-icon>power_settings_new</mat-icon>
 
-            <span mat-line>{{'main.signOut' | translate}}</span>
-        </mat-list-item>
-    </div>
+      <span mat-line>{{'main.signOut' | translate}}</span>
+    </mat-list-item>
+  </div>
 
 </mat-list>
