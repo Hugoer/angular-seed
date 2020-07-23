@@ -10,9 +10,7 @@ import { SharedModule } from '@app/shared/shared.module';
 import { UserEffects } from '@app/redux/user/user.effect';
 import { userReducer } from '@app/redux/user/user.reducer';
 
-const MATERIAL_PAGES_MODULES = [
-  MatButtonModule,
-];
+const MATERIAL_PAGES_MODULES = [MatButtonModule];
 
 @NgModule({
   imports: [
@@ -20,17 +18,10 @@ const MATERIAL_PAGES_MODULES = [
     MATERIAL_PAGES_MODULES,
     HomeRoutingModule,
     StoreModule.forFeature('user', userReducer),
-    EffectsModule.forFeature([
-      UserEffects,
-    ]),
+    EffectsModule.forFeature([UserEffects]),
   ],
-  declarations: [
-    HomeComponent
-  ],
-  exports: [
-    MATERIAL_PAGES_MODULES,
-  ],
-  providers: [
-  ]
+  declarations: [HomeComponent],
+  exports: [MATERIAL_PAGES_MODULES],
+  providers: [],
 })
-export class HomeModule { }
+export class HomeModule {}

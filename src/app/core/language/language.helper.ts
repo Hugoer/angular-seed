@@ -23,12 +23,14 @@ export class SvLangService {
     private localStorage: LocalStorageService,
     private adapter: DateAdapter<any>,
   ) {
-    this.rendererHtmlTag = this.rootRenderer.createRenderer(document.querySelector('html'), null);
+    this.rendererHtmlTag = this.rootRenderer.createRenderer(
+      document.querySelector('html'),
+      null,
+    );
     this.init();
   }
 
   private updateTabTitle(titleKey?: string) {
-
     if (!titleKey) {
       titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
     }
@@ -41,7 +43,10 @@ export class SvLangService {
 
   private changeLanguage(languageKey: string) {
     const languageStorage = this.localStorage.retrieve('userLanguage');
-    if ((!!languageStorage && languageStorage !== languageKey) || (!languageStorage)) {
+    if (
+      (!!languageStorage && languageStorage !== languageKey) ||
+      !languageStorage
+    ) {
       console.log('changeLanguage: ' + languageKey);
       this.localStorage.store('userLanguage', languageKey);
       moment.locale(languageKey);
@@ -50,19 +55,24 @@ export class SvLangService {
   }
 
   private init() {
-    this.translateService.onLangChange
-      .subscribe(() => {
-        console.log('lang changed from language helper');
-        this.rendererHtmlTag.setAttribute(document.querySelector('html'), 'lang', this.translateService.currentLang);
-        this.updateTabTitle();
-        this.changeLanguage(this.translateService.currentLang);
-      });
-
+    this.translateService.onLangChange.subscribe(() => {
+      console.log('lang changed from language helper');
+      this.rendererHtmlTag.setAttribute(
+        document.querySelector('html'),
+        'lang',
+        this.translateService.currentLang,
+      );
+      this.updateTabTitle();
+      this.changeLanguage(this.translateService.currentLang);
+    });
   }
 
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {
     // tslint:disable-next-line: no-string-literal
-    let title: string = (routeSnapshot.data && routeSnapshot.data['pageTitle']) ? routeSnapshot.data['pageTitle'] : 'global.title';
+    let title: string =
+      routeSnapshot.data && routeSnapshot.data['pageTitle']
+        ? routeSnapshot.data['pageTitle']
+        : 'global.title';
     if (routeSnapshot.firstChild) {
       title = this.getPageTitle(routeSnapshot.firstChild) || title;
     }
@@ -78,7 +88,7 @@ export class SvLangService {
   updateNavBarTitle(title: ITitleNavbar) {
     this.eventManager.broadcast({
       name: 'titleChanged',
-      content: title
+      content: title,
     });
   }
 
@@ -94,11 +104,13 @@ export class SvLangService {
   updateOnRouting() {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        const titleKey = this.getPageTitle(this.router.routerState.snapshot.root);
+        const titleKey = this.getPageTitle(
+          this.router.routerState.snapshot.root,
+        );
         this.translateService.get(titleKey).subscribe((titleTranslated) => {
           this.updateNavBarTitle({
             key: titleKey,
-            title: titleTranslated
+            title: titleTranslated,
           });
         });
         this.updateTabTitle(titleKey);
@@ -106,7 +118,6 @@ export class SvLangService {
       }
     });
   }
-
 
   // addKeyToTitle(titleKey: string) {
   //     const newTitle = this.translateService.instant(titleKey);
@@ -119,5 +130,4 @@ export class SvLangService {
   // addTitle(title: string) {
   //     this.addStringToTitle(title);
   // }
-
 }

@@ -9,12 +9,11 @@ export const environment = {
   toast: {
     duration: 5000,
     verticalPosition: 'bottom',
-    horizontalPosition: 'end'
+    horizontalPosition: 'end',
   },
   mustRefreshToken: false,
   forceRefreshToken: 300000,
   defaultI18nLang: 'es',
   debounceModel: 700,
-  httpAvoidMessages: [
-  ]
+  httpAvoidMessages: [],
 };

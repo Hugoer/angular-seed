@@ -5,23 +5,18 @@ import { getUser } from './user.selectors';
 import { LoadUser, Logout } from './user.actions';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserSandbox {
-    public getUser$ = this.appState.select(getUser);
+  public getUser$ = this.appState.select(getUser);
 
-    constructor(
-        protected appState: Store<UserState>,
-    ) {
+  constructor(protected appState: Store<UserState>) {}
 
-    }
+  public getUser() {
+    this.appState.dispatch(LoadUser());
+  }
 
-    public getUser() {
-        this.appState.dispatch(LoadUser());
-    }
-
-    public doLogout() {
-        this.appState.dispatch(Logout());
-    }
-
+  public doLogout() {
+    this.appState.dispatch(Logout());
+  }
 }

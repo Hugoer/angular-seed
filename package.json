@@ -1,11 +1,6 @@
 {
   "name": "work-log",
   "version": "0.0.0",
-  "husky": {
-    "hooks": {
-      "pre-commit": "ng lint --fix=true"
-    }
-  },
   "scripts": {
     "ng": "ng",
     "start": "npm run i18n && ng serve --proxy-config src/proxy.conf.json --open",
@@ -13,6 +8,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
+    "format": "prettier --write \"src/**/*.ts\"",
     "e2e": "ng e2e",
     "i18n": "node ./scripts/generatelocales",
     "ngcc:prepare": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points",

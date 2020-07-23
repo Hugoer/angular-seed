@@ -18,71 +18,64 @@ import { LanguageModule } from './language/language.module';
 import { environment } from '@environment/environment';
 import { EffectsModule } from '@ngrx/effects';
 
-const MATERIAL_CORE_MODULES = [
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-];
+const MATERIAL_CORE_MODULES = [MatProgressSpinnerModule, MatSnackBarModule];
 
 @NgModule({
-    imports: [
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        LanguageModule,
-        MATERIAL_CORE_MODULES,
-        ServiceWorkerModule.register('ngsw-worker.js', {
-            enabled: environment.production
-        }),
-        StoreModule.forRoot({}),
-        EffectsModule.forRoot([]),
-        !environment.production ?
-            StoreDevtoolsModule.instrument({
-                maxAge: 25, // Retains last 25 states
-                logOnly: false, // Restrict extension to log-only mode
-            }) :
-            [],
-        NgxWebstorageModule.forRoot({
-            prefix: 'wl-',
-            separator: '-',
-            caseSensitive: true
-        }),
-    ],
-    declarations: [
-        SpinnerComponent,
-        DummyComponent,
-        LoginComponent,
-    ],
-    exports: [
-        SpinnerComponent,
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        LanguageModule,
-        MATERIAL_CORE_MODULES,
-        ServiceWorkerModule,
-        StoreModule,
-        !environment.production ?
-            StoreDevtoolsModule :
-            [],
-        NgxWebstorageModule,
-    ],
-    providers: [
-        MatSnackBar,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: MainInterceptor,
-            multi: true
-        },
-        {
-            provide: ErrorHandler,
-            useClass: ErrorsHandler,
-        }
-    ]
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    LanguageModule,
+    MATERIAL_CORE_MODULES,
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: environment.production,
+    }),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
+    !environment.production
+      ? StoreDevtoolsModule.instrument({
+          maxAge: 25, // Retains last 25 states
+          logOnly: false, // Restrict extension to log-only mode
+        })
+      : [],
+    NgxWebstorageModule.forRoot({
+      prefix: 'wl-',
+      separator: '-',
+      caseSensitive: true,
+    }),
+  ],
+  declarations: [SpinnerComponent, DummyComponent, LoginComponent],
+  exports: [
+    SpinnerComponent,
+    HttpClientModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    LanguageModule,
+    MATERIAL_CORE_MODULES,
+    ServiceWorkerModule,
+    StoreModule,
+    !environment.production ? StoreDevtoolsModule : [],
+    NgxWebstorageModule,
+  ],
+  providers: [
+    MatSnackBar,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: MainInterceptor,
+      multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: ErrorsHandler,
+    },
+  ],
 })
 export class CoreModule {
-    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-        if (parentModule) {
-            throw new Error('CoreModule has already been loaded. You should only import Core modules in the AppModule only.');
-        }
+  constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    if (parentModule) {
+      throw new Error(
+        'CoreModule has already been loaded. You should only import Core modules in the AppModule only.',
+      );
     }
+  }
 }

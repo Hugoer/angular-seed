@@ -67,7 +67,7 @@ import 'core-js/es/map';
 import 'core-js/es/weak-map';
 import 'core-js/es/set';
 
-import 'classlist.js';  // Run `npm install --save classlist.js`.
+import 'classlist.js'; // Run `npm install --save classlist.js`.
 
 import 'core-js/es/reflect';
 
@@ -77,8 +77,7 @@ import 'core-js/es/reflect';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js/dist/zone';  // Included with Angular CLI.
-
+import 'zone.js/dist/zone'; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

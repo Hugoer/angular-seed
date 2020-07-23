@@ -5,16 +5,12 @@ import { Router } from '@angular/router';
   selector: 'app-dummy',
   templateUrl: './dummy.component.html',
   styleUrls: ['./dummy.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DummyComponent implements OnInit {
-
-  constructor(
-    private router: Router
-  ) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.router.navigate(['']);
   }
-
 }

@@ -11,40 +11,33 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ConfirmDialogComponent } from './components/confirm/confirm.component';
 
-const MATERIAL_SHARED_MODULES = [
-    MatDialogModule,
-    MatButtonModule,
-];
+const MATERIAL_SHARED_MODULES = [MatDialogModule, MatButtonModule];
 
 @NgModule({
-    imports: [
-        MATERIAL_SHARED_MODULES,
-        TranslateModule,
-        MomentModule,
-        RouterModule,
-        QuicklinkModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-    ],
-    declarations: [
-        ConfirmDialogComponent,
-    ],
-    entryComponents: [
-        ConfirmDialogComponent,
-    ],
-    exports: [
-        ConfirmDialogComponent,
-        MATERIAL_SHARED_MODULES,
-        TranslateModule,
-        MomentModule,
-        RouterModule,
-        QuicklinkModule,
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-    ]
+  imports: [
+    MATERIAL_SHARED_MODULES,
+    TranslateModule,
+    MomentModule,
+    RouterModule,
+    QuicklinkModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  declarations: [ConfirmDialogComponent],
+  entryComponents: [ConfirmDialogComponent],
+  exports: [
+    ConfirmDialogComponent,
+    MATERIAL_SHARED_MODULES,
+    TranslateModule,
+    MomentModule,
+    RouterModule,
+    QuicklinkModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

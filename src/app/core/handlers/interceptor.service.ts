@@ -5,12 +5,12 @@ import {
   HttpErrorResponse,
   HttpHandler,
   HttpRequest,
-  HttpResponse
+  HttpResponse,
 } from '@angular/common/http';
 import {
   MatSnackBar,
   MatSnackBarVerticalPosition,
-  MatSnackBarHorizontalPosition
+  MatSnackBarHorizontalPosition,
 } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,7 +21,7 @@ import { Router } from '@angular/router';
 const enum ToastType {
   'primary',
   'warn',
-  'accent'
+  'accent',
 }
 
 interface IServerMessage {
@@ -31,7 +31,6 @@ interface IServerMessage {
 
 @Injectable()
 export class MainInterceptor implements HttpInterceptor {
-
   arrStatusCodeTrad = {};
 
   getWindow(): any {
@@ -48,12 +47,15 @@ export class MainInterceptor implements HttpInterceptor {
     const showXhr = (xhr) => {
       if (xhr.__zone_symbol__xhrURL.indexOf('http') >= 0) {
         const myUrl = new URL(xhr.__zone_symbol__xhrURL);
-        const urlSearch = myUrl.protocol + '//' +
-          myUrl.hostname + ':' +
+        const urlSearch =
+          myUrl.protocol +
+          '//' +
+          myUrl.hostname +
+          ':' +
           myUrl.port +
           myUrl.pathname;
         myEventManager.broadcast({
-          name: 'xhrStart'
+          name: 'xhrStart',
         });
         const token = sessionStorage.getItem(urlSearch);
         if (!!token) {
@@ -65,7 +67,7 @@ export class MainInterceptor implements HttpInterceptor {
     const hideXhr = (xhr) => {
       if (xhr.__zone_symbol__xhrURL.indexOf('http') >= 0) {
         myEventManager.broadcast({
-          name: 'xhrStop'
+          name: 'xhrStop',
         });
       }
     };
@@ -85,7 +87,7 @@ export class MainInterceptor implements HttpInterceptor {
       },
       send: function (_arg, xhr) {
         showXhr(xhr);
-      }
+      },
       // tslint:enable
     };
 
@@ -94,18 +96,18 @@ export class MainInterceptor implements HttpInterceptor {
     this.getWindow().XMLHttpRequest = function () {
       // tslint:disable
       const _window: any = window;
-      this.xhr = new _window._ahrealxhr;
+      this.xhr = new _window._ahrealxhr();
       for (const attr in this.xhr) {
         let type = '';
         try {
           type = typeof this.xhr[attr];
-        } catch (e) { }
+        } catch (e) {}
         if (type === 'function') {
           this[attr] = hookfun(attr);
         } else {
           Object.defineProperty(this, attr, {
             get: getFactory(attr),
-            set: setFactory(attr)
+            set: setFactory(attr),
           });
         }
       }
@@ -115,9 +117,11 @@ export class MainInterceptor implements HttpInterceptor {
     function getFactory(attr) {
       // tslint:disable
       return function () {
-        const v = this.hasOwnProperty(attr + '_') ? this[attr + '_'] : this.xhr[attr];
+        const v = this.hasOwnProperty(attr + '_')
+          ? this[attr + '_']
+          : this.xhr[attr];
         const attrGetterHook = (proxy[attr] || {})['getter'];
-        return attrGetterHook && attrGetterHook(v, this) || v;
+        return (attrGetterHook && attrGetterHook(v, this)) || v;
       };
       // tslint:enable
     }
@@ -136,7 +140,7 @@ export class MainInterceptor implements HttpInterceptor {
         } else {
           // If the attribute isn't writeable, generate proxy attribute
           const attrSetterHook = (hook || {})['setter'];
-          v = attrSetterHook && attrSetterHook(v, that) || v;
+          v = (attrSetterHook && attrSetterHook(v, that)) || v;
           try {
             xhr[attr] = v;
           } catch (e) {
@@ -158,7 +162,6 @@ export class MainInterceptor implements HttpInterceptor {
       };
       // tslint:enable
     }
-
   }
 
   private showNotification(message: string, type: ToastType, detail?: string) {
@@ -185,99 +188,143 @@ export class MainInterceptor implements HttpInterceptor {
 
     this.snackBar.open(fullMessage, null, {
       duration: environment.toast.duration,
-      verticalPosition: environment.toast.verticalPosition as MatSnackBarVerticalPosition,
-      horizontalPosition: environment.toast.horizontalPosition as MatSnackBarHorizontalPosition,
-      panelClass: cssClass
+      verticalPosition: environment.toast
+        .verticalPosition as MatSnackBarVerticalPosition,
+      horizontalPosition: environment.toast
+        .horizontalPosition as MatSnackBarHorizontalPosition,
+      panelClass: cssClass,
     });
   }
 
-  private processStatus(statusCode: number, err?: any, serverAlert?: IServerMessage) {
+  private processStatus(
+    statusCode: number,
+    err?: any,
+    serverAlert?: IServerMessage,
+  ) {
     switch (true) {
-      case (statusCode === -1):
+      case statusCode === -1:
         const errText = !!err.error ? err.error.text : '';
-        this.showNotification(this.translateService.instant('global.http.json'), ToastType.primary, errText);
+        this.showNotification(
+          this.translateService.instant('global.http.json'),
+          ToastType.primary,
+          errText,
+        );
         break;
-      case (statusCode === 200):
-        if (!!serverAlert.alert && !environment.httpAvoidMessages.includes(serverAlert.alert)) {
+      case statusCode === 200:
+        if (
+          !!serverAlert.alert &&
+          !environment.httpAvoidMessages.includes(serverAlert.alert)
+        ) {
           this.showNotification(
-            this.translateService.instant(serverAlert.alert, { param: serverAlert.param }),
-            ToastType.primary
+            this.translateService.instant(serverAlert.alert, {
+              param: serverAlert.param,
+            }),
+            ToastType.primary,
           );
         }
         break;
-      case (statusCode === 201):
-        if (!!serverAlert.alert && !environment.httpAvoidMessages.includes(serverAlert.alert)) {
+      case statusCode === 201:
+        if (
+          !!serverAlert.alert &&
+          !environment.httpAvoidMessages.includes(serverAlert.alert)
+        ) {
           this.showNotification(
-            this.translateService.instant(serverAlert.alert, { param: serverAlert.param }),
-            ToastType.primary
+            this.translateService.instant(serverAlert.alert, {
+              param: serverAlert.param,
+            }),
+            ToastType.primary,
           );
         } else {
-          this.showNotification(this.translateService.instant('global.http.201'), ToastType.primary);
+          this.showNotification(
+            this.translateService.instant('global.http.201'),
+            ToastType.primary,
+          );
         }
         break;
-      case (statusCode === 204):
-        this.showNotification(this.translateService.instant('global.http.204'), ToastType.primary);
+      case statusCode === 204:
+        this.showNotification(
+          this.translateService.instant('global.http.204'),
+          ToastType.primary,
+        );
         break;
-      case (statusCode === 400):
-        this.showNotification(this.translateService.instant('global.http.400'), ToastType.warn);
+      case statusCode === 400:
+        this.showNotification(
+          this.translateService.instant('global.http.400'),
+          ToastType.warn,
+        );
         break;
-      case (statusCode === 403):
-        this.showNotification(this.translateService.instant('global.http.403'), ToastType.warn);
+      case statusCode === 403:
+        this.showNotification(
+          this.translateService.instant('global.http.403'),
+          ToastType.warn,
+        );
         break;
-      case (statusCode === 401):
-        this.showNotification(this.translateService.instant('global.http.401'), ToastType.warn);
+      case statusCode === 401:
+        this.showNotification(
+          this.translateService.instant('global.http.401'),
+          ToastType.warn,
+        );
         this.router.navigate(['login']);
         break;
-      case (statusCode === 404):
-        this.showNotification(this.translateService.instant('global.http.404'), ToastType.warn);
+      case statusCode === 404:
+        this.showNotification(
+          this.translateService.instant('global.http.404'),
+          ToastType.warn,
+        );
         break;
-      case (statusCode === 409):
-        this.showNotification(this.translateService.instant('global.http.409'), ToastType.warn, err.error.detail);
+      case statusCode === 409:
+        this.showNotification(
+          this.translateService.instant('global.http.409'),
+          ToastType.warn,
+          err.error.detail,
+        );
         break;
-      case (statusCode < 600 && statusCode >= 500):
+      case statusCode < 600 && statusCode >= 500:
         const errDetail =
           !!err.error &&
-          (
-            err.error.detail ||
+          (err.error.detail ||
             err.error.title ||
-            `${err.error.error} ${!!err.error.message ? '(' + err.error.message + ')' : ''}`
-          );
+            `${err.error.error} ${
+              !!err.error.message ? '(' + err.error.message + ')' : ''
+            }`);
         this.showNotification(
           this.translateService.instant('global.http.500'),
           ToastType.warn,
-          errDetail
+          errDetail,
         );
         break;
       default:
-        this.showNotification(this.translateService.instant('global.http.defaulterror'), ToastType.warn);
+        this.showNotification(
+          this.translateService.instant('global.http.defaulterror'),
+          ToastType.warn,
+        );
         break;
     }
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-
     let dummyrequest: HttpRequest<any>;
     dummyrequest = req.clone({});
 
     this.svsEventManager.broadcast({
-      name: 'httpStart'
+      name: 'httpStart',
     });
 
     const httpEvent = next.handle(dummyrequest);
 
-    return httpEvent
-      .pipe(
-        tap((event) => {
+    return httpEvent.pipe(
+      tap(
+        (event) => {
           if (event instanceof HttpResponse) {
-
             const serverAlert: IServerMessage = {
               alert: event.headers.get('x-app-alert'),
-              param: +event.headers.get('x-app-params')
+              param: +event.headers.get('x-app-params'),
             };
 
             this.processStatus(event.status, null, serverAlert);
           }
-        }, (err) => {
+        },
+        (err) => {
           if (err instanceof HttpErrorResponse) {
             if (err.status !== 200) {
               this.processStatus(err.status, err);
@@ -287,14 +334,13 @@ export class MainInterceptor implements HttpInterceptor {
               this.processStatus(-1, err);
             }
           }
-        }),
-        finalize(() => {
-          this.svsEventManager.broadcast({
-            name: 'httpStop'
-          });
-        })
-      );
-
+        },
+      ),
+      finalize(() => {
+        this.svsEventManager.broadcast({
+          name: 'httpStop',
+        });
+      }),
+    );
   }
-
 }

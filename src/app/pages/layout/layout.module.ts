@@ -18,43 +18,36 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MenuComponent } from './menu/menu.component';
 
 const MATERIAL_LAYOUT_MODULES = [
-    MatTooltipModule,
-    MatMenuModule,
-    MatToolbarModule,
-    MatListModule,
-    MatIconModule,
-    MatDividerModule,
-    MatSidenavModule,
-    MatProgressBarModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatAutocompleteModule,
+  MatTooltipModule,
+  MatMenuModule,
+  MatToolbarModule,
+  MatListModule,
+  MatIconModule,
+  MatDividerModule,
+  MatSidenavModule,
+  MatProgressBarModule,
+  MatButtonModule,
+  MatDialogModule,
+  MatAutocompleteModule,
 ];
 
 @NgModule({
-    imports: [
-        SharedModule,
-        MATERIAL_LAYOUT_MODULES
-    ],
-    exports: [
-        SharedModule,
-        ShellComponent,
-        NavbarComponent,
-        MenuComponent,
-        CloseMenuDirective,
-        MATERIAL_LAYOUT_MODULES,
-    ],
-    declarations: [
-        ShellComponent,
-        NavbarComponent,
-        MenuComponent,
-        CloseMenuDirective,
-    ],
-    entryComponents: [
-
-    ],
-    providers: [
-    ]
+  imports: [SharedModule, MATERIAL_LAYOUT_MODULES],
+  exports: [
+    SharedModule,
+    ShellComponent,
+    NavbarComponent,
+    MenuComponent,
+    CloseMenuDirective,
+    MATERIAL_LAYOUT_MODULES,
+  ],
+  declarations: [
+    ShellComponent,
+    NavbarComponent,
+    MenuComponent,
+    CloseMenuDirective,
+  ],
+  entryComponents: [],
+  providers: [],
 })
-
-export class LayoutModule { }
+export class LayoutModule {}

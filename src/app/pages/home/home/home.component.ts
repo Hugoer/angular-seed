@@ -7,16 +7,15 @@ import * as moment from 'moment';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-
   time = new Date();
 
   constructor(
     private localStorage: LocalStorageService,
     private langService: TranslateService,
-  ) { }
+  ) {}
 
   changeLanguage() {
     const data = this.localStorage.retrieve('userLanguage');
@@ -38,7 +37,5 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

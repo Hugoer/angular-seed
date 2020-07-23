@@ -26,77 +26,59 @@ const initialStatus: UserState = {
 
 const reducer = createReducer(
   initialStatus,
-  on(
-    UserActionTypes.LoadUser,
-    (state) => {
-      return {
-        ...state,
-        userLoading: true,
-        userLoaded: false,
-        userFailure: false,
-      };
-    }
-  ),
-  on(
-    UserActionTypes.LoadUserSuccess,
-    (state, { user }) => {
-      return {
-        ...state,
-        user,
-        userLoading: false,
-        userLoaded: true,
-        userFailure: false,
-      };
-    }
-  ),
-  on(
-    UserActionTypes.LoadUserFailure,
-    (state) => {
-      return {
-        ...state,
-        userLoading: false,
-        userLoaded: false,
-        userFailure: true,
-      };
-    }
-  ),
-  on(
-    UserActionTypes.Logout,
-    (state) => {
-      return {
-        ...state,
-        logoutLoading: true,
-        logoutLoadingSuccess: false,
-        logoutLoadingFailure: false,
-      };
-    }
-  ),
-  on(
-    UserActionTypes.LogoutSuccess,
-    (state) => {
-      return {
-        ...state,
-        user: null,
-        userLoading: false,
-        userLoaded: false,
-        userFailure: false,
-        logoutLoading: false,
-        logoutLoadingSuccess: true,
-        logoutLoadingFailure: false,
-      };
-    }
-  ),
-  on(
-    UserActionTypes.LogoutFailure,
-    (state) => {
-      return {
-        ...state,
-        logoutLoading: false,
-        logoutLoadingSuccess: false,
-        logoutLoadingFailure: true,
-      };
-    }
-  ),
+  on(UserActionTypes.LoadUser, (state) => {
+    return {
+      ...state,
+      userLoading: true,
+      userLoaded: false,
+      userFailure: false,
+    };
+  }),
+  on(UserActionTypes.LoadUserSuccess, (state, { user }) => {
+    return {
+      ...state,
+      user,
+      userLoading: false,
+      userLoaded: true,
+      userFailure: false,
+    };
+  }),
+  on(UserActionTypes.LoadUserFailure, (state) => {
+    return {
+      ...state,
+      userLoading: false,
+      userLoaded: false,
+      userFailure: true,
+    };
+  }),
+  on(UserActionTypes.Logout, (state) => {
+    return {
+      ...state,
+      logoutLoading: true,
+      logoutLoadingSuccess: false,
+      logoutLoadingFailure: false,
+    };
+  }),
+  on(UserActionTypes.LogoutSuccess, (state) => {
+    return {
+      ...state,
+      user: null,
+      userLoading: false,
+      userLoaded: false,
+      userFailure: false,
+      logoutLoading: false,
+      logoutLoadingSuccess: true,
+      logoutLoadingFailure: false,
+    };
+  }),
+  on(UserActionTypes.LogoutFailure, (state) => {
+    return {
+      ...state,
+      logoutLoading: false,
+      logoutLoadingSuccess: false,
+      logoutLoadingFailure: true,
+    };
+  }),
 );
 
 export function userReducer(seedState: UserState | undefined, action: Action) {

@@ -12,23 +12,26 @@ import { LoginComponent } from './pages/login/login.component';
 const publicRoutes: Routes = [
   {
     path: 'no-user',
-    loadChildren: () => import('./pages/nouser/nouser.module').then(m => m.NoUserModule),
+    loadChildren: () =>
+      import('./pages/nouser/nouser.module').then((m) => m.NoUserModule),
   },
   {
     path: 'dummy',
     component: DummyComponent,
-  }
+  },
 ];
 
 const privateRoutes: Routes = [
   {
     path: '',
     // canActivate: [UserRouteAccessService],
-    loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule),
+    loadChildren: () =>
+      import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
     path: 'test',
-    loadChildren: () => import('./pages/test/test.module').then(m => m.TestModule),
+    loadChildren: () =>
+      import('./pages/test/test.module').then((m) => m.TestModule),
   },
 ];
 
@@ -44,21 +47,17 @@ const routes: Routes = [
   {
     path: '',
     component: ShellComponent,
-    children: [
-      ...publicRoutes,
-      ...privateRoutes,
-      ...adminRoutes,
-    ]
+    children: [...publicRoutes, ...privateRoutes, ...adminRoutes],
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
     // loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule),
   },
   {
     path: '**',
-    redirectTo: ''
-  }
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
@@ -68,12 +67,9 @@ const routes: Routes = [
       onSameUrlNavigation: 'reload',
       preloadingStrategy: QuicklinkStrategy,
       useHash: true,
-      enableTracing: environment.enableTracing
+      enableTracing: environment.enableTracing,
     }),
   ],
-  exports: [
-    RouterModule,
-    LayoutModule,
-  ]
+  exports: [RouterModule, LayoutModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,5 +1,1 @@
-export const LANGUAGES: string[] = [
-    'es',
-    'gl',
-    'en'
-];
+export const LANGUAGES: string[] = ['es', 'gl', 'en'];

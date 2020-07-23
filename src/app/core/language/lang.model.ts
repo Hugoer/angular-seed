@@ -1,4 +1,4 @@
 export interface ITitleNavbar {
-    title: string;
-    key: string;
+  title: string;
+  key: string;
 }
