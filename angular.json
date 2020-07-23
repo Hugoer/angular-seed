@@ -64,7 +64,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "commonChunk": false,
-              "es5BrowserSupport": false,
               "buildOptimizer": false,
               "baseHref": "./",
               "budgets": [
