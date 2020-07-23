@@ -67,19 +67,19 @@ $ORANGE: (
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://www.google.com/design/spec/style/color.html
-$sv-app-primary: mat-palette($ORANGE);
-$sv-app-accent: mat-palette($NEGRO);
+$sd-app-primary: mat-palette($ORANGE);
+$sd-app-accent: mat-palette($NEGRO);
 
 // The warn palette is optional (defaults to red).
-$sv-app-warn: mat-palette($mat-red);
+$sd-app-warn: mat-palette($mat-red);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$sv-app-theme: mat-light-theme($sv-app-primary, $sv-app-accent, $sv-app-warn);
-$sv-primary: mat-color(map-get($sv-app-theme, primary));
-$sv-primary-contrast: mat-contrast(map-get($sv-app-theme, primary), 500);
-$sv-secondary: mat-color(map-get($sv-app-theme, accent));
-$sv-secondary-contrast: mat-contrast(map-get($sv-app-theme, accent), 500);
-$sv-warn: mat-color(map-get($sv-app-theme, warn));
-$sv-warn-contrast: mat-contrast(map-get($sv-app-theme, warn), 500);
-$background: map-get($sv-app-theme, background);
-$sv-background: mat-color($background, background);
+$sd-app-theme: mat-light-theme($sd-app-primary, $sd-app-accent, $sd-app-warn);
+$sd-primary: mat-color(map-get($sd-app-theme, primary));
+$sd-primary-contrast: mat-contrast(map-get($sd-app-theme, primary), 500);
+$sd-secondary: mat-color(map-get($sd-app-theme, accent));
+$sd-secondary-contrast: mat-contrast(map-get($sd-app-theme, accent), 500);
+$sd-warn: mat-color(map-get($sd-app-theme, warn));
+$sd-warn-contrast: mat-contrast(map-get($sd-app-theme, warn), 500);
+$background: map-get($sd-app-theme, background);
+$sd-background: mat-color($background, background);

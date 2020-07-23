@@ -9,7 +9,7 @@
 	margin: 0;
 	padding: 0;
 
-	background-color: $sv-secondary;
+	background-color: $sd-secondary;
 
 	.sd__item {
 		cursor: pointer;
@@ -24,7 +24,7 @@
 	h3.mat-subheader,
 	.sd__item {
 		color: white;
-		background-color: $sv-secondary;
+		background-color: $sd-secondary;
 		.mat-list-item {
 			color: white;
 		}
@@ -36,7 +36,7 @@
 	.sd__item--active {
 		text-transform: uppercase;
 
-		background-color: $sv-primary;
+		background-color: $sd-primary;
 	}
 	.sd__side-divider {
 		background-color: white;
