@@ -15,7 +15,7 @@
     "postinstall": "node ./scripts/locale.js",
     "build:prod": "npm run i18n && ng build --prod",
     "build:prod:stats": "npm run i18n && ng build --prod --stats-json",
-    "analyzer": "webpack-bundle-analyzer dist/seed/stats-es2015.json",
+    "analyzer": "webpack-bundle-analyzer dist/seed/stats.json",
     "bundle-report": "npm run build:prod:stats && npm run analyzer"
   },
   "private": true,
