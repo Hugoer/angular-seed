@@ -64,18 +64,18 @@ export class LanguageModule {
     private translate: TranslateService,
     private localStorage: LocalStorageService,
     @Optional() @SkipSelf() parentModule: LanguageModule,
-    private adapter: DateAdapter<any>,
   ) {
     if (parentModule) {
       throw new Error(
         'LanguageModule has already been loaded. You should only import Core modules in the CoreModule only.',
       );
     }
-    const data = this.localStorage.retrieve('userLanguage');
-    const languageStorage = data || environment.defaultI18nLang;
-    if (!!languageStorage) {
-      this.translate.use(languageStorage);
-      this.adapter.setLocale(languageStorage);
+    let data = this.localStorage.retrieve('userLanguage');
+    if (!data) {
+      this.localStorage.store('userLanguage', environment.defaultI18nLang);
+      data = environment.defaultI18nLang;
     }
+    const languageStorage = data;
+    this.translate.use(languageStorage);
   }
 }

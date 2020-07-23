@@ -70,8 +70,8 @@ export class SvLangService {
   private getPageTitle(routeSnapshot: ActivatedRouteSnapshot): string {
     // tslint:disable-next-line: no-string-literal
     let title: string =
-      routeSnapshot.data && routeSnapshot.data['pageTitle']
-        ? routeSnapshot.data['pageTitle']
+      routeSnapshot.data && routeSnapshot.data.pageTitle
+        ? routeSnapshot.data.pageTitle
         : 'global.title';
     if (routeSnapshot.firstChild) {
       title = this.getPageTitle(routeSnapshot.firstChild) || title;

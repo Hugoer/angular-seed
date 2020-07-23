@@ -34,12 +34,9 @@ const MATERIAL_LAYOUT_MODULES = [
 @NgModule({
   imports: [SharedModule, MATERIAL_LAYOUT_MODULES],
   exports: [
-    SharedModule,
     ShellComponent,
     NavbarComponent,
     MenuComponent,
-    CloseMenuDirective,
-    MATERIAL_LAYOUT_MODULES,
   ],
   declarations: [
     ShellComponent,
@@ -50,4 +47,4 @@ const MATERIAL_LAYOUT_MODULES = [
   entryComponents: [],
   providers: [],
 })
-export class LayoutModule {}
+export class LayoutModule { }
