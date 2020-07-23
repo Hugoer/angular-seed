@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private localStorage: LocalStorageService,
     private langService: TranslateService,
-  ) {}
+  ) { }
 
   changeLanguage() {
     const data = this.localStorage.retrieve('userLanguage');
@@ -29,13 +29,13 @@ export class HomeComponent implements OnInit {
   forceChangeLang() {
     const data = this.localStorage.retrieve('userLanguage');
     if (data === 'es') {
-      moment.updateLocale('en');
+      moment.updateLocale('en', null);
       this.localStorage.store('userLanguage', 'en');
     } else if (data === 'en') {
-      moment.updateLocale('es');
+      moment.updateLocale('es', null);
       this.localStorage.store('userLanguage', 'es');
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
