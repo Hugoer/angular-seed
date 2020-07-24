@@ -11,7 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorStateMatcher } from '@angular/material/core';
 
 import { ConfirmDialogComponent } from './components/confirm/confirm.component';
-import { SdErrorStateMatcher } from '@app/core/handlers/material-error-matcher';
+import { SdErrorStateMatcher } from '@app/shared/handlers/material-error-matcher';
 
 const MATERIAL_SHARED_MODULES = [MatDialogModule, MatButtonModule];
 
