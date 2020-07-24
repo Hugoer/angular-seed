@@ -33,5 +33,6 @@ mat-card-header.mat-card-header {
 .sd__margin router-outlet + * {
 	display: block;
 
+	width: 100%;
 	padding: 15px;
 }
