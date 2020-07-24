@@ -8,8 +8,10 @@ import { CommonModule } from '@angular/common';
 import { QuicklinkModule } from 'ngx-quicklink';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 import { ConfirmDialogComponent } from './components/confirm/confirm.component';
+import { SdErrorStateMatcher } from '@app/core/handlers/material-error-matcher';
 
 const MATERIAL_SHARED_MODULES = [MatDialogModule, MatButtonModule];
 
@@ -39,5 +41,11 @@ const MATERIAL_SHARED_MODULES = [MatDialogModule, MatButtonModule];
     ReactiveFormsModule,
     HttpClientModule,
   ],
+  providers: [
+    {
+      provide: ErrorStateMatcher,
+      useClass: SdErrorStateMatcher
+    },
+  ],
 })
-export class SharedModule {}
+export class SharedModule { }
