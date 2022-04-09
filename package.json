@@ -39,7 +39,7 @@
     "@ngx-translate/http-loader": "^6.0.0",
     "classlist.js": "^1.1.20150312",
     "material-design-icons": "^3.0.1",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "ngx-moment": "^5.0.0",
     "ngx-quicklink": "^0.2.3",
     "ngx-webstorage": "^6.0.0",
